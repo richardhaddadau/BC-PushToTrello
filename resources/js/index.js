@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Home from './screens/home';
 import ListOfThings from './screens/list';
@@ -21,8 +21,8 @@ ReactDOM.render((
             </nav>
 
             <Switch>
-                <Route exact path='/list' component={ ListOfThings } />
-                <Route component={ Home } />
+                <Route exact path='/list' element={ <ListOfThings/> } />
+                <Route element={ <Home/> } />
             </Switch>
         </div>
     </BrowserRouter>
