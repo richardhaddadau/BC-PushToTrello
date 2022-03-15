@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Stylesheet } from 
 
 export default class Home extends Component {
     render() {
@@ -11,6 +12,7 @@ export default class Home extends Component {
 
                            <div className="card-body">
                                This is the Home Page.
+                               <button>Sync Now</button>
                            </div>
                        </div>
                    </div>
@@ -29,3 +31,4 @@ export default class Home extends Component {
         );
     }
 }
+

@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './screens/home';
 import ListOfThings from './screens/list';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 ReactDOM.render((
     <BrowserRouter>
         <div>
@@ -21,8 +23,8 @@ ReactDOM.render((
             </nav>
 
             <Routes>
-                <Route exact path='/list' element={ <ListOfThings/> } />
-                <Route exact path='/' element={ <Home/> } />
+                <Route path='/list' element={ <ListOfThings/> } />
+                <Route path='/' element={ <Home/> } />
             </Routes>
         </div>
     </BrowserRouter>
