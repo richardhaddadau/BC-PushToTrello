@@ -20,10 +20,10 @@ ReactDOM.render((
                 </ul>
             </nav>
 
-            <Switch>
+            <Routes>
                 <Route exact path='/list' element={ <ListOfThings/> } />
-                <Route element={ <Home/> } />
-            </Switch>
+                <Route exact path='/' element={ <Home/> } />
+            </Routes>
         </div>
     </BrowserRouter>
 ), document.getElementById('root'));
