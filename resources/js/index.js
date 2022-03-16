@@ -9,23 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render((
     <BrowserRouter>
-        <div>
-            <nav className="container">
-                <ul className="nav mt-2 mb-2">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/list">List</Link>
-                    </li>
-                </ul>
-            </nav>
-
-            <Routes>
-                <Route path='/list' element={ <ListOfThings/> } />
-                <Route path='/' element={ <Home/> } />
-            </Routes>
+        <div className="container">
+            <div className="row">
+                <h1 className="col-md-12 mt-2 mb-3">Push to Trello</h1>
+            </div>
         </div>
+        <Routes>
+            <Route path='/' element={ <Home/> } />
+        </Routes>
     </BrowserRouter>
 ), document.getElementById('root'));

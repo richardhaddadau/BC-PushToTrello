@@ -11863,38 +11863,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
-      className: "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-        className: "nav mt-2 mb-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-            className: "nav-link",
-            to: "/",
-            children: "Home"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-          className: "nav-item",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-            className: "nav-link",
-            to: "/list",
-            children: "List"
-          })
-        })]
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    className: "container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "row",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+        className: "col-md-12 mt-2 mb-3",
+        children: "Push to Trello"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/list",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_screens_list__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_screens_home__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      })]
-    })]
-  })
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+      path: "/",
+      element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_screens_home__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+    })
+  })]
 }), document.getElementById('root'));
 
 /***/ }),
@@ -11915,8 +11899,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Form.js");
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Group/Group.js");
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Select/Select.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Checkbox/Checkbox.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Checkbox/Checkbox.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -11932,12 +11916,9 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
- // When Select Option Changes
 
 
 
-
-var handleOption = function handleOption() {};
 
 var getToday = function getToday() {
   var newDate = new Date();
@@ -11945,42 +11926,210 @@ var getToday = function getToday() {
   var month = newDate.getMonth();
   var year = newDate.getFullYear();
   return "".concat(month < 10 ? "0".concat(month) : "".concat(month), "/").concat(day, "/").concat(year);
-}; // export default class Home extends Component {
-
+};
 
 var Home = function Home() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      boardsList = _useState2[0],
+      setBoardsList = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      listsList = _useState4[0],
+      setListsList = _useState4[1]; // useEffect(() => {
+  //     fetch("https://api.bigcommerce.com/stores/8nrrjpcfao/v3/catalog/products", {
+  //         "method": "GET",
+  //         "headers": {
+  //             "Content-Type": "application/json",
+  //             "X-Auth-Token": "d7vb4fg8lzs80o63jxikyh89w3hxrja"
+  //         }
+  //     })
+  //         .then((response) => response.json())
+  //         .then((actualData) => console.log(actualData))
+  //         .catch(err => console.error(err));
+  // },[]);
+
+
+  var boardsObj;
+  var listsObj;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (response) {
+      return response.json();
+    }).then(function (actualData) {
+      boardsObj = actualData.filter(function (entity) {
+        return !entity.closed;
+      }).map(function (item) {
+        return {
+          value: item['shortLink'],
+          content: item['name']
+        };
+      });
+      setBoardsList(boardsObj);
+    });
+  }, []);
+
+  var processBoardChange = function processBoardChange(key) {
+    if (key !== null) {
+      fetch("https://api.trello.com/1/boards/" + key + "/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (response) {
+        return response.json();
+      }).then(function (actualData) {
+        listsObj = actualData.map(function (item) {
+          return {
+            value: item['id'],
+            content: item['name']
+          };
+        });
+        setListsList(listsObj);
+      });
+    }
+  };
+
+  var processListChange = function processListChange(key) {
+    if (key !== null) {
+      fetch("https://api.trello.com/1/lists/" + key + "/cards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (respose) {
+        return respose.json();
+      }).then(function (actualData) {
+        setCurrentList(actualData.map(function (item) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              style: {
+                fontStyle: 'italic',
+                fontSize: '80%'
+              },
+              children: item['name']
+            }, item['id'])
+          }, item['id']);
+        }));
+      });
+    }
+  };
+
   var todayIs = getToday();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      checked = _useState2[0],
-      setChecked = _useState2[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('beginning'),
+      _useState6 = _slicedToArray(_useState5, 2),
+      dateOption = _useState6[0],
+      setDateOption = _useState6[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("".concat(todayIs)),
-      _useState4 = _slicedToArray(_useState3, 2),
-      date = _useState4[0],
-      setDate = _useState4[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      boardOption = _useState8[0],
+      setBoardOption = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      listOption = _useState10[0],
+      setListOption = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('No list chosen'),
+      _useState12 = _slicedToArray(_useState11, 2),
+      currentList = _useState12[0],
+      setCurrentList = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("".concat(todayIs)),
+      _useState14 = _slicedToArray(_useState13, 2),
+      date = _useState14[0],
+      setDate = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      checked = _useState16[0],
+      setChecked = _useState16[1]; // When Checkbox Changes
+
+
+  var handleCheckbox = function handleCheckbox() {
+    return setChecked(!checked);
+  };
+
+  /*#__PURE__*/
+  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__.GlobalStyles, {});
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "row",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "col-md-8",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "col-md-6",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "card",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "card-header",
+            children: "Push to Trello"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "card-body",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.Form, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+                children: boardsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {
+                  filterable: true,
+                  label: "Choose a Trello Board to Sync to:",
+                  maxHeight: 300,
+                  onOptionChange: function onOptionChange(boardOption) {
+                    setBoardOption(boardOption);
+                    processBoardChange(boardOption);
+                  },
+                  options: boardsList,
+                  placeholder: 'Select a board',
+                  placement: 'bottom-start',
+                  required: true,
+                  value: boardOption
+                }) : null
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+                children: boardOption !== '' ? listsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {
+                  filterable: true,
+                  label: "Choose a Trello List to Sync to:",
+                  maxHeight: 300,
+                  onOptionChange: function onOptionChange(listOption) {
+                    setListOption(listOption);
+                    processListChange(listOption);
+                  },
+                  options: listsList,
+                  placeholder: 'Select a list',
+                  placement: 'bottom-start',
+                  required: true,
+                  value: listOption
+                }) : null : null
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.Checkbox, {
+                  label: "Turn on automatic sync",
+                  checked: checked,
+                  onChange: handleCheckbox
+                })
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "card mt-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "card-header",
+            children: ["Current Chosen List: ", listOption]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "card-body",
+            children: listOption !== '' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("table", {
+              children: currentList
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              children: "No list chosen"
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "col-md-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "card",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "card-header",
-            children: "Home Page"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            children: "Manual Push"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "card-body",
-            children: [getToday(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__.GlobalStyles, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.Form, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.Form, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {
                   filterable: true,
                   label: "When do you want to sync from?",
                   maxHeight: 300,
-                  onOptionChange: handleOption,
+                  onOptionChange: function onOptionChange(dateOption) {
+                    return setDateOption(dateOption);
+                  },
                   options: [{
                     value: 'beginning',
                     content: 'Beginning of time'
@@ -11991,10 +12140,10 @@ var Home = function Home() {
                   placeholder: 'Select an option',
                   placement: 'bottom-start',
                   required: true,
-                  value: ""
+                  value: dateOption
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.Datepicker, {
+              }), dateOption === 'from' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Datepicker, {
                   label: "Pick a date",
                   min: "01/01/2021",
                   max: getToday(),
@@ -12004,28 +12153,12 @@ var Home = function Home() {
                   value: date,
                   locale: "en-AU"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Checkbox, {
-                  label: "Turn on automatic sync",
-                  checked: checked,
-                  onChange: ""
+              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__.Button, {
+                  children: "Sync Now"
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__.Button, {
-              children: "Sync Now"
-            })]
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "col-md-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "card",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "card-header",
-            children: "Side Bar"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "card-body",
-            children: "This is a Side Bar."
+            })
           })]
         })
       })]
