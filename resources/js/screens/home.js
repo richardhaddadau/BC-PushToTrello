@@ -44,6 +44,18 @@ const Home = () => {
             });
     }, []);
 
+    const authorizeTrello = () => {
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://trello.com/1/authorize?expiration=1day&name=token&scope=read&response_type=token&key=366d3a7f27ff81fde9157811979f86e7", requestOptions)
+            .then(response => response)
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    };
+
     const processBoardChange = (key) => {
         if (key !== null) {
             fetch("https://api.trello.com/1/boards/" + key +"/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
@@ -80,6 +92,10 @@ const Home = () => {
 
     // When Checkbox Changes
     const handleCheckbox = () => setChecked(!checked);
+
+    useEffect(() => {
+        console.log(authorizeTrello());
+    }, []);
 
     <GlobalStyles />
 
