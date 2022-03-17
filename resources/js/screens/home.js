@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Checkbox, Button, GlobalStyles, Select, Datepicker } from "@bigcommerce/big-design";
+import axios from "axios";
 
 const getToday = () => {
     const newDate = new Date();
@@ -34,26 +35,21 @@ const Home = () => {
         fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
             .then((response) => response.json())
             .then((actualData) => {
-                boardsObj = actualData.filter(entity => {
+                setBoardsList(actualData.filter(entity => {
                     return !entity.closed;
                 }).map(item => {
                     return {value: item['shortLink'], content: item['name']};
-                });
+                }));
 
-                setBoardsList(boardsObj);
+                // setBoardsList(boardsObj);
             });
     }, []);
 
-    const authorizeTrello = () => {
-        const requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch("https://trello.com/1/authorize?expiration=1day&name=token&scope=read&response_type=token&key=366d3a7f27ff81fde9157811979f86e7", requestOptions)
-            .then(response => response)
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+    const callTrello = () => {
+        console.log("Running ..");
+        axios({
+            url: '/trello'
+        });
     };
 
     const processBoardChange = (key) => {
@@ -61,11 +57,11 @@ const Home = () => {
             fetch("https://api.trello.com/1/boards/" + key +"/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
                 .then((response) => response.json())
                 .then((actualData) => {
-                    listsObj = actualData.map(item => {
+                    setListsList(actualData.map(item => {
                         return {value: item['id'], content: item['name']};
-                    });
+                    }));
 
-                    setListsList(listsObj);
+                    // setListsList(listsObj);
                 });
         }
     }
@@ -93,24 +89,27 @@ const Home = () => {
     // When Checkbox Changes
     const handleCheckbox = () => setChecked(!checked);
 
-    useEffect(() => {
-        console.log(authorizeTrello());
-    }, []);
-
     <GlobalStyles />
 
     return (
-       <div className="container">
-           <div className="row">
-               <div className="col-md-6">
-                   <div className="card">
-                       <div className="card-header">Push to Trello</div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-12 mb-3">
+                    <Button isLoading={false} variant="primary" onClick={callTrello}>
+                       Login to Trello
+                    </Button>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="card">
+                        <div className="card-header">Push to Trello</div>
 
-                       <div className="card-body">
-                           <Form>
-                               <FormGroup>
+                        <div className="card-body">
+                            <Form>
+                                <FormGroup>
                                    { boardsList !== null ?
-                                   <Select
+                                    <Select
                                        filterable={true}
                                        label="Choose a Trello Board to Sync to:"
                                        maxHeight={300}
@@ -120,7 +119,7 @@ const Home = () => {
                                        placement={'bottom-start'}
                                        required
                                        value={boardOption}
-                                   />
+                                    />
                                        : null }
                                </FormGroup>
 
@@ -149,16 +148,6 @@ const Home = () => {
                                        onChange={ handleCheckbox } />
                                </FormGroup>
                            </Form>
-                       </div>
-                   </div>
-
-                   <div className="card mt-2">
-                       <div className="card-header">Current Chosen List: {listOption}</div>
-
-                       <div className="card-body">
-                           { listOption !== '' ?
-                               <table>{currentList}</table>
-                               : <p>No list chosen</p> }
                        </div>
                    </div>
                </div>
@@ -206,8 +195,48 @@ const Home = () => {
                        </div>
                    </div>
                </div>
-           </div>
-       </div>
+            </div>
+
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="card mt-3">
+                        <div className="card-header">Card Create Template</div>
+
+                        <div className="card-body">
+
+                            <div className="col-md-6 mx-auto">
+
+                                <div className="card border border-secondary mt-2">
+                                    <div className="card-header bg-primary bg-gradient text-light"><span className="fw-bold me-2">Title</span> Order: {'{Job' +
+                                           ' Number}'}</div>
+                                    <div className="card-body">
+                                        <p className="fw-bold">Description</p>
+                                        <div>{'{Customer Name}'}<br/><br/>
+                                            {'{{Every}}'}<br/>
+                                            <div className="ps-4">
+                                                {'{Product Name}'}<br/>
+                                                SKU: {'{Product SKU}'}<br/>
+                                                QTY: {'{Product Quantity}'}<br/>
+                                            </div>
+                                            {'{{/Every}}'}<br/><br/>
+                                            Address: {'{Shipping Address}'}<br/><br/>
+                                            Shipping Type: {'{Shipping Method}'}<br/><br/>
+                                            Phone: {'{Customer Phone Number}'}<br/>
+                                            Email: {'{Customer Email}'}<br/><br/>
+                                            ---<br/><br/>
+                                            Details:<br/>
+                                            {'{Customer Comments}'}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p className="fst-italic fs-6 mt-3">Template customisations coming soon.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

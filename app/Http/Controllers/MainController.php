@@ -205,21 +205,4 @@ class MainController extends Controller
 
         return response($result->getBody(), $result->getStatusCode())->header('Content', 'application/json');
     }
-
-    // Trello API Request
-    public function trelloAPIRequest(Request $request, $endpoint) {
-        $trelloRequestURL = 'https://trello.com/1/OAuthGetRequestToken';
-        $trelloAuthorizeURL = 'https://trello.com/1/OAuthAuthorizeToken';
-        $trelloAccessURL = 'https://trello.com/1/OAuthGetAccessToken';
-        $trelloScope = 'read';
-        $trelloExpiration = '1hour';
-
-        $trelloKey = env('TRELLO_API_KEY');
-        $trelloSecret = env('TRELLO_SECRET');
-
-        $client = new Client();
-
-        $result = $client->request($request->method(), 'https://api.trello.com/1/' . $endpoint . '?key=' & $trelloKey);
-        return $result;
-    }
 }

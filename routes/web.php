@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Models\Trello;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use App\Http\Controllers\MainController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/trello', function (Trello $trello) {
+    return $trello->getAuthenticated();
+});
 
 Route::get('/{url?}', function () {
     return view('app');
@@ -27,3 +32,4 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::any('/bc-api/{endpoint}', [MainController::class, 'proxyBigCommerceAPIRequest'])
     ->where('endpoint', 'v2\/.*|v3\/.*');
+
