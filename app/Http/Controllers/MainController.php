@@ -205,4 +205,11 @@ class MainController extends Controller
 
         return response($result->getBody(), $result->getStatusCode())->header('Content', 'application/json');
     }
+
+    // Trello API Request
+    public function trelloAPIRequest(Request $request, $endpoint) {
+        $client = new Client();
+
+        $result = $client->request($request->method(), 'https://api.trello.com/1/' . $endpoint . '')
+    }
 }

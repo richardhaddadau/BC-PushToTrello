@@ -25,3 +25,5 @@ Route::group(['prefix' => 'auth'], function() {
     Route::get('/remove-user', [MainController::class, 'removeUser']);
 });
 
+Route::any('/bc-api/{endpoint}', [MainController::class, 'proxyBigCommerceAPIRequest'])
+    ->where('endpoint', 'v2\/.*|v3\/.*');
