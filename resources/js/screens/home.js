@@ -2,6 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Checkbox, Button, GlobalStyles, Select, Datepicker } from "@bigcommerce/big-design";
 import axios from "axios";
 
+const templateShortcodes = {
+    'jobNumber': '204',
+    'customerFirstName': 'Jane',
+    'customerLastName': 'Doe',
+    'shippingStreet1': '64 Adelaide St',
+    'shippingStreet2': '-',
+    'shippingSuburb': 'Brisbane City',
+    'shippingState': 'QLD',
+    'shippingPostcode': '4000',
+    'shippingCountry': 'Australia',
+    'shippingEmail': 'jane.doe@example.com',
+    'shippingPhone': '+61 0412 345 678',
+};
+
 const getToday = () => {
     const newDate = new Date();
     const day = newDate.getDate();
@@ -78,6 +92,24 @@ const Home = () => {
         }
     }
 
+    const previewTemplate = `
+        {'{Customer_Name}'}<br/>
+        {'{{Every}}'}}<br/>
+        <div className="ps-4">
+            {'{Product_Name}'}<br/>
+            SKU: {'{Product_SKU}'}<br/>
+            QTY: {'{Product_Quantity}'}<br/>
+        </div>
+        {'{{/Every}}'}<br/><br/>
+        Address: {'{Shipping_Address}'}<br/><br/>
+        Shipping Type: {'{Shipping_Method}'}<br/><br/>
+        Phone: {'{Customer_Phone}'}<br/>
+        Email: {'{Customer_Email}'}<br/><br/>
+        ---<br/><br/>
+        Details:<br/>
+        {'{Customer_Comments}'}
+        `;
+
     const todayIs = getToday();
     const [dateOption, setDateOption] = useState('beginning');
     const [boardOption, setBoardOption] = useState('');
@@ -85,6 +117,8 @@ const Home = () => {
     const [currentList, setCurrentList] = useState('No list chosen');
     const [date, setDate] = useState(`${todayIs}`);
     const [checked, setChecked] = useState(false);
+    const [cardPreview, setCardPreview] = useState('');
+    const [cardTemplate, setCardTemplate] = useState(previewTemplate);
 
     // When Checkbox Changes
     const handleCheckbox = () => setChecked(!checked);
@@ -92,7 +126,7 @@ const Home = () => {
     <GlobalStyles />
 
     return (
-        <div className="container">
+        <div className="container p-2 mb-2">
             <div className="row">
                 <div className="col-md-12 mb-3">
                     <Button isLoading={false} variant="primary" onClick={callTrello}>
@@ -100,6 +134,7 @@ const Home = () => {
                     </Button>
                 </div>
             </div>
+
             <div className="row">
                 <div className="col-md-6">
                     <div className="card">
@@ -198,40 +233,71 @@ const Home = () => {
             </div>
 
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-16">
                     <div className="card mt-3">
-                        <div className="card-header">Card Create Template</div>
-
+                        <div className="card-header">Card Template</div>
                         <div className="card-body">
 
-                            <div className="col-md-6 mx-auto">
-
-                                <div className="card border border-secondary mt-2">
-                                    <div className="card-header bg-primary bg-gradient text-light"><span className="fw-bold me-2">Title</span> Order: {'{Job' +
-                                           ' Number}'}</div>
-                                    <div className="card-body">
-                                        <p className="fw-bold">Description</p>
-                                        <div>{'{Customer Name}'}<br/><br/>
-                                            {'{{Every}}'}<br/>
-                                            <div className="ps-4">
-                                                {'{Product Name}'}<br/>
-                                                SKU: {'{Product SKU}'}<br/>
-                                                QTY: {'{Product Quantity}'}<br/>
+                            <div className="row">
+                                <div className="col-md-6 mx-auto">
+                                    <h6>Preview:</h6>
+                                    <div className="card border border-secondary mt-2">
+                                        <div className="card-header bg-primary bg-gradient text-light"><span className="fw-bold me-2">Title</span> Order: {'{Job_Number}'}</div>
+                                        <div className="card-body">
+                                            <p className="fw-bold">Description</p>
+                                            <div>
+                                                {'{Customer_Name}'}<br/>
+                                                {'{{Every}}'}}<br/>
+                                                <div className="ps-4">
+                                                    {'{Product_Name}'}<br/>
+                                                    SKU: {'{Product_SKU}'}<br/>
+                                                    QTY: {'{Product_Quantity}'}<br/>
+                                                </div>
+                                                {'{{/Every}}'}<br/><br/>
+                                                Address: {'{Shipping_Address}'}<br/><br/>
+                                                Shipping Type: {'{Shipping_Method}'}<br/><br/>
+                                                Phone: {'{Customer_Phone}'}<br/>
+                                                Email: {'{Customer_Email}'}<br/><br/>
+                                                ---<br/><br/>
+                                                Details:<br/>
+                                                {'{Customer_Comments}'}
                                             </div>
-                                            {'{{/Every}}'}<br/><br/>
-                                            Address: {'{Shipping Address}'}<br/><br/>
-                                            Shipping Type: {'{Shipping Method}'}<br/><br/>
-                                            Phone: {'{Customer Phone Number}'}<br/>
-                                            Email: {'{Customer Email}'}<br/><br/>
-                                            ---<br/><br/>
-                                            Details:<br/>
-                                            {'{Customer Comments}'}
                                         </div>
                                     </div>
                                 </div>
 
-                                <p className="fst-italic fs-6 mt-3">Template customisations coming soon.</p>
+                                <div className="col-md-6 mx-auto">
+                                    <h6>Template:</h6>
+                                    <div className="card border border-secondary mt-2 opacity-50">
+                                        <div className="card-header bg-secondary bg-gradient text-light">
+                                            <span className="fw-bold me-2">Title</span> Order: {'{Job_Number}'}
+                                        </div>
+                                        <div className="card-body">
+                                            <p className="fw-bold">Description</p>
+                                            <div>
+                                                {'{Customer_Name}'}<br/>
+                                                {'{{Every}}'}}<br/>
+                                                <div className="ps-4">
+                                                    {'{Product_Name}'}<br/>
+                                                    SKU: {'{Product_SKU}'}<br/>
+                                                    QTY: {'{Product_Quantity}'}<br/>
+                                                </div>
+                                                {'{{/Every}}'}<br/><br/>
+                                                Address: {'{Shipping_Address}'}<br/><br/>
+                                                Shipping Type: {'{Shipping_Method}'}<br/><br/>
+                                                Phone: {'{Customer_Phone}'}<br/>
+                                                Email: {'{Customer_Email}'}<br/><br/>
+                                                ---<br/><br/>
+                                                Details:<br/>
+                                                {'{Customer_Comments}'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="fst-italic fs-6 mt-1">Template customisations coming soon.</p>
+                                </div>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
