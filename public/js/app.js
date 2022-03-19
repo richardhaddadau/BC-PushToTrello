@@ -11839,31 +11839,272 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Trello.js":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Trello.js ***!
-  \*******************************************/
+/***/ "./resources/js/components/Trello/CardTemplate.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Trello/CardTemplate.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CheckTrello": () => (/* binding */ CheckTrello)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
-var CheckTrello = function CheckTrello() {
-  // Process Trello
-  var findToken = window.location.hash;
-  var tokenHash = '#token=';
 
-  if (findToken.substring(0, tokenHash.length) === tokenHash) {
-    var getToken = findToken.substring(tokenHash.length);
-    console.log(getToken);
-  }
+var CardTemplate = function CardTemplate() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "row",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "col-md-16",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "card mt-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-header",
+          children: "Trello Card Template"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md-6 mx-auto",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h6", {
+                children: "Preview:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "card border border-secondary mt-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "card-header bg-primary bg-gradient text-light",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "fw-bold me-2",
+                    children: "Title"
+                  }), " Order: ", '{Job_Number}']
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "card-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                    className: "fw-bold",
+                    children: "Description"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    children: ['{Customer_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{{Every}}', "}", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "ps-4",
+                      children: ['{Product_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "SKU: ", '{Product_SKU}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "QTY: ", '{Product_Quantity}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {})]
+                    }), '{{/Every}}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Address:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingStreet1}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingStreet2}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingSuburb}', ", ", '{shippingState}', " - ", '{shippingPostcode}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingCountry}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Shipping Type: ", '{Shipping_Method}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Phone: ", '{Customer_Phone}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Email: ", '{Customer_Email}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "---", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Details:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{Customer_Comments}']
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md-6 mx-auto",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h6", {
+                children: "Template:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "card border border-secondary mt-2 opacity-50",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "card-header bg-secondary bg-gradient text-light",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "fw-bold me-2",
+                    children: "Title"
+                  }), " Order: ", '{Job_Number}']
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "card-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                    className: "fw-bold",
+                    children: "Description"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    children: ['{Customer_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{{Every}}', "}", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "ps-4",
+                      children: ['{Product_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "SKU: ", '{Product_SKU}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "QTY: ", '{Product_Quantity}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {})]
+                    }), '{{/Every}}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Address:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingStreet1}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingStreet2}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingSuburb}', ", ", '{shippingState}', " - ", '{shippingPostcode}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{shippingCountry}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Shipping Type: ", '{Shipping_Method}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Phone: ", '{Customer_Phone}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Email: ", '{Customer_Email}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "---", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Details:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), '{Customer_Comments}']
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                className: "fst-italic fs-6 mt-1",
+                children: "Template customisations coming soon."
+              })]
+            })]
+          })
+        })]
+      })
+    })
+  });
 };
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CardTemplate);
+
+/***/ }),
+
+/***/ "./resources/js/components/Trello/PromptLogin.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Trello/PromptLogin.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var PromptLogin = function PromptLogin() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "row",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "col-md-12 mb-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: "/trello",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          isLoading: false,
+          variant: "primary",
+          children: "Login to Trello"
+        })
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PromptLogin);
+
+/***/ }),
+
+/***/ "./resources/js/components/Trello/PushSettings.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Trello/PushSettings.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Form.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Group/Group.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Select/Select.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Checkbox/Checkbox.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var PushSettings = function PushSettings() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "row",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "col-md-6",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "card",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-header",
+          children: "Push to Trello"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__.Form, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: boardsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.Select, {
+                filterable: true,
+                label: "Choose a Trello Board to Sync to:",
+                maxHeight: 300,
+                onOptionChange: function onOptionChange(boardOption) {
+                  setBoardOption(boardOption);
+                  processBoardChange(boardOption);
+                },
+                options: boardsList,
+                placeholder: 'Select a board',
+                placement: 'bottom-start',
+                required: true,
+                value: boardOption
+              }) : null
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: boardOption !== '' ? listsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.Select, {
+                filterable: true,
+                label: "Choose a Trello List to Sync to:",
+                maxHeight: 300,
+                onOptionChange: function onOptionChange(listOption) {
+                  setListOption(listOption);
+                  processListChange(listOption);
+                },
+                options: listsList,
+                placeholder: 'Select a list',
+                placement: 'bottom-start',
+                required: true,
+                value: listOption
+              }) : null : null
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Checkbox, {
+                label: "Turn on automatic sync",
+                checked: checked,
+                onChange: handleCheckbox
+              })
+            })]
+          })
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "col-md-6",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "card",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-header",
+          children: "Manual Push"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "card-body",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_2__.Form, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.Select, {
+                filterable: true,
+                label: "When do you want to sync from?",
+                maxHeight: 300,
+                onOptionChange: function onOptionChange(dateOption) {
+                  return setDateOption(dateOption);
+                },
+                options: [{
+                  value: 'beginning',
+                  content: 'Beginning of time'
+                }, {
+                  value: 'from',
+                  content: 'Specific date'
+                }],
+                placeholder: 'Select an option',
+                placement: 'bottom-start',
+                required: true,
+                value: dateOption
+              })
+            }), dateOption === 'from' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.Datepicker, {
+                label: "Pick a date",
+                min: "01/01/2021",
+                max: getToday(),
+                onDateChange: function onDateChange(value) {
+                  return setDate(value);
+                },
+                value: date,
+                locale: "en-AU"
+              })
+            }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Button, {
+                children: "Sync Now"
+              })
+            })]
+          })
+        })]
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PushSettings);
 
 /***/ }),
 
@@ -11921,15 +12162,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/GlobalStyles/GlobalStyles.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Form.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Group/Group.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Select/Select.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Checkbox/Checkbox.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
-/* harmony import */ var _components_Trello__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Trello */ "./resources/js/components/Trello.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/GlobalStyles/GlobalStyles.js");
+/* harmony import */ var _components_Trello_PromptLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Trello/PromptLogin */ "./resources/js/components/Trello/PromptLogin.js");
+/* harmony import */ var _components_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Trello/PushSettings */ "./resources/js/components/Trello/PushSettings.js");
+/* harmony import */ var _components_Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Trello/CardTemplate */ "./resources/js/components/Trello/CardTemplate.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -11941,6 +12178,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -12061,8 +12300,8 @@ var Home = function Home() {
         return respose.json();
       }).then(function (actualData) {
         setCurrentList(actualData.map(function (item) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
               style: {
                 fontStyle: 'italic',
                 fontSize: '80%'
@@ -12082,200 +12321,14 @@ var Home = function Home() {
   };
 
   /*#__PURE__*/
-  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__.GlobalStyles, {});
+  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.GlobalStyles, {});
 
   return (
     /*#__PURE__*/
     //
-    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "container p-2 mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_Trello__WEBPACK_IMPORTED_MODULE_1__.CheckTrello, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-12 mb-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-            href: "/trello",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.Button, {
-              isLoading: false,
-              variant: "primary",
-              children: "Login to Trello"
-            })
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-6",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-header",
-              children: "Push to Trello"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-body",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Form, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: boardsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Select, {
-                    filterable: true,
-                    label: "Choose a Trello Board to Sync to:",
-                    maxHeight: 300,
-                    onOptionChange: function onOptionChange(boardOption) {
-                      setBoardOption(boardOption);
-                      processBoardChange(boardOption);
-                    },
-                    options: boardsList,
-                    placeholder: 'Select a board',
-                    placement: 'bottom-start',
-                    required: true,
-                    value: boardOption
-                  }) : null
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: boardOption !== '' ? listsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Select, {
-                    filterable: true,
-                    label: "Choose a Trello List to Sync to:",
-                    maxHeight: 300,
-                    onOptionChange: function onOptionChange(listOption) {
-                      setListOption(listOption);
-                      processListChange(listOption);
-                    },
-                    options: listsList,
-                    placeholder: 'Select a list',
-                    placement: 'bottom-start',
-                    required: true,
-                    value: listOption
-                  }) : null : null
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__.Checkbox, {
-                    label: "Turn on automatic sync",
-                    checked: checked,
-                    onChange: handleCheckbox
-                  })
-                })]
-              })
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-6",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-header",
-              children: "Manual Push"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-body",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Form, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Select, {
-                    filterable: true,
-                    label: "When do you want to sync from?",
-                    maxHeight: 300,
-                    onOptionChange: function onOptionChange(dateOption) {
-                      return setDateOption(dateOption);
-                    },
-                    options: [{
-                      value: 'beginning',
-                      content: 'Beginning of time'
-                    }, {
-                      value: 'from',
-                      content: 'Specific date'
-                    }],
-                    placeholder: 'Select an option',
-                    placement: 'bottom-start',
-                    required: true,
-                    value: dateOption
-                  })
-                }), dateOption === 'from' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_9__.Datepicker, {
-                    label: "Pick a date",
-                    min: "01/01/2021",
-                    max: getToday(),
-                    onDateChange: function onDateChange(value) {
-                      return setDate(value);
-                    },
-                    value: date,
-                    locale: "en-AU"
-                  })
-                }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.FormGroup, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.Button, {
-                    children: "Sync Now"
-                  })
-                })]
-              })
-            })]
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "row",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-16",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "card mt-3",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-header",
-              children: "Trello Card Template"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "card-body",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "col-md-6 mx-auto",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-                    children: "Preview:"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    className: "card border border-secondary mt-2",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "card-header bg-primary bg-gradient text-light",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        className: "fw-bold me-2",
-                        children: "Title"
-                      }), " Order: ", '{Job_Number}']
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                        className: "fw-bold",
-                        children: "Description"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                        children: ['{Customer_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{{Every}}', "}", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                          className: "ps-4",
-                          children: ['{Product_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "SKU: ", '{Product_SKU}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "QTY: ", '{Product_Quantity}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-                        }), '{{/Every}}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Address:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingStreet1}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingStreet2}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingSuburb}', ", ", '{shippingState}', " - ", '{shippingPostcode}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingCountry}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Shipping Type: ", '{Shipping_Method}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Phone: ", '{Customer_Phone}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Email: ", '{Customer_Email}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "---", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Details:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{Customer_Comments}']
-                      })]
-                    })]
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "col-md-6 mx-auto",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-                    children: "Template:"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    className: "card border border-secondary mt-2 opacity-50",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "card-header bg-secondary bg-gradient text-light",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        className: "fw-bold me-2",
-                        children: "Title"
-                      }), " Order: ", '{Job_Number}']
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                        className: "fw-bold",
-                        children: "Description"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                        children: ['{Customer_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{{Every}}', "}", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                          className: "ps-4",
-                          children: ['{Product_Name}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "SKU: ", '{Product_SKU}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "QTY: ", '{Product_Quantity}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-                        }), '{{/Every}}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Address:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingStreet1}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingStreet2}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingSuburb}', ", ", '{shippingState}', " - ", '{shippingPostcode}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{shippingCountry}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Shipping Type: ", '{Shipping_Method}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Phone: ", '{Customer_Phone}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Email: ", '{Customer_Email}', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "---", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Details:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), '{Customer_Comments}']
-                      })]
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                    className: "fst-italic fs-6 mt-1",
-                    children: "Template customisations coming soon."
-                  })]
-                })]
-              })
-            })]
-          })
-        })
-      })]
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Trello_PromptLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
     })
   );
 };
