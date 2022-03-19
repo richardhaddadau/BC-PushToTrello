@@ -1,6 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
+
+const templateShortcodes = {
+    'jobNumber': '204',
+    'customerFirstName': 'Jane',
+    'customerLastName': 'Doe',
+    'shippingStreet1': '64 Adelaide St',
+    'shippingStreet2': '-',
+    'shippingSuburb': 'Brisbane City',
+    'shippingState': 'QLD',
+    'shippingPostcode': '4000',
+    'shippingCountry': 'Australia',
+    'shippingEmail': 'jane.doe@example.com',
+    'shippingPhone': '+61 0412 345 678',
+};
+
+const previewTemplate = `
+    {'{Customer_Name}'}<br/>
+    {'{{Every}}'}}<br/>
+    <div className="ps-4">
+        {'{Product_Name}'}<br/>
+        SKU: {'{Product_SKU}'}<br/>
+        QTY: {'{Product_Quantity}'}<br/>
+    </div>
+    {'{{/Every}}'}<br/><br/>
+    Address: {'{Shipping_Address}'}<br/><br/>
+    Shipping Type: {'{Shipping_Method}'}<br/><br/>
+    Phone: {'{Customer_Phone}'}<br/>
+    Email: {'{Customer_Email}'}<br/><br/>
+    ---<br/><br/>
+    Details:<br/>
+    {'{Customer_Comments}'}
+    `;
 
 const CardTemplate = () => {
+    const [cardPreview, setCardPreview] = useState('');
+    const [cardTemplate, setCardTemplate] = useState(previewTemplate);
+
     return (
         <div className="row">
             <div className="col-md-16">

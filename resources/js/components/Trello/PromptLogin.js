@@ -1,5 +1,5 @@
-import {Button} from "@bigcommerce/big-design";
 import React from "react";
+import {Button} from "@bigcommerce/big-design";
 
 const PromptLogin = () => {
     return (

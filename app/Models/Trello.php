@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class Trello extends Model
 {
@@ -29,5 +31,27 @@ class Trello extends Model
         $trelloAuthUrl = self::AUTH_URL . '?' . http_build_query($urlParams);
 
         return redirect($trelloAuthUrl);
+    }
+
+    public function isTokenValid($trelloToken) {
+        $client = new Client();
+
+//        $result = $client->request('get', 'https://jsonplaceholder.typicode.com/todos/1');
+//        return $result->getStatusCode();
+
+        $testURL ='https://api.trello.com/1/members/me/boards?key=' . env('TRELLO_KEY') . '&token=' . $trelloToken;
+
+        try {
+            $response = Http::get('https://api.trello.com/1/members/me/boards', [
+                'key' => env('TRELLO_KEY'),
+                'token' => $trelloToken,
+            ]);
+            return $response->status();
+        } catch (RequestException $error) {
+            return 'Oops';
+            return $response->status();
+        }
+//        $result = $client->request('get', );
+        return $result->getStatusCode();
     }
 }

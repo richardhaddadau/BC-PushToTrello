@@ -19,6 +19,16 @@ Route::get('/trello', function (Trello $trello) {
     return $trello->getAuthenticated();
 });
 
+Route::get('trello-api/valid-token', function (Trello $trello) {
+    return $trello->isTokenValid();
+});
+
+Route::group(['prefix' => 'trello-api'], function() {
+    Route::get('/valid-token/{token}', function ($token, Trello $trello) {
+        return $trello->isTokenValid($token);
+    });
+});
+
 Route::get('/{url?}', function () {
     return view('app');
 })->where('', 'list');
