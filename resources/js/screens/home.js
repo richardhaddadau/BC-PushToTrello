@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Checkbox, Button, GlobalStyles, Select, Datepicker } from "@bigcommerce/big-design";
-import axios from "axios";
+import {CheckTrello} from "../components/Trello";
 
 const templateShortcodes = {
     'jobNumber': '204',
@@ -26,21 +26,18 @@ const getToday = () => {
 }
 
 const Home = () => {
+    // Declare States
+    const todayIs = getToday();
+    const [dateOption, setDateOption] = useState('beginning');
+    const [boardOption, setBoardOption] = useState('');
+    const [listOption, setListOption] = useState('');
+    const [currentList, setCurrentList] = useState('No list chosen');
+    const [date, setDate] = useState(`${todayIs}`);
+    const [checked, setChecked] = useState(false);
+    const [cardPreview, setCardPreview] = useState('');
+    const [cardTemplate, setCardTemplate] = useState(previewTemplate);
     const [boardsList, setBoardsList] = useState(null);
     const [listsList, setListsList] = useState(null);
-
-    // useEffect(() => {
-    //     fetch("https://api.bigcommerce.com/stores/8nrrjpcfao/v3/catalog/products", {
-    //         "method": "GET",
-    //         "headers": {
-    //             "Content-Type": "application/json",
-    //             "X-Auth-Token": "d7vb4fg8lzs80o63jxikyh89w3hxrja"
-    //         }
-    //     })
-    //         .then((response) => response.json())
-    //         .then((actualData) => console.log(actualData))
-    //         .catch(err => console.error(err));
-    // },[]);
 
     let boardsObj;
     let listsObj;
@@ -59,13 +56,6 @@ const Home = () => {
             });
     }, []);
 
-    const callTrello = () => {
-        console.log("Running ..");
-        axios({
-            url: '/trello'
-        });
-    };
-
     const processBoardChange = (key) => {
         if (key !== null) {
             fetch("https://api.trello.com/1/boards/" + key +"/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
@@ -76,7 +66,7 @@ const Home = () => {
                     }));
 
                     // setListsList(listsObj);
-                });
+            });
         }
     }
 
@@ -88,7 +78,7 @@ const Home = () => {
                     setCurrentList(actualData.map(item => {
                         return <tr key={item['id']}><td key={item['id']} style={{ fontStyle: 'italic', fontSize: '80%' }}>{item['name']}</td></tr>;
                     }));
-                });
+            });
         }
     }
 
@@ -110,28 +100,18 @@ const Home = () => {
         {'{Customer_Comments}'}
         `;
 
-    const todayIs = getToday();
-    const [dateOption, setDateOption] = useState('beginning');
-    const [boardOption, setBoardOption] = useState('');
-    const [listOption, setListOption] = useState('');
-    const [currentList, setCurrentList] = useState('No list chosen');
-    const [date, setDate] = useState(`${todayIs}`);
-    const [checked, setChecked] = useState(false);
-    const [cardPreview, setCardPreview] = useState('');
-    const [cardTemplate, setCardTemplate] = useState(previewTemplate);
-
     // When Checkbox Changes
     const handleCheckbox = () => setChecked(!checked);
 
     <GlobalStyles />
 
     return (
+        //
         <div className="container p-2 mb-2">
             <div className="row">
+                <CheckTrello />
                 <div className="col-md-12 mb-3">
-                    <Button isLoading={false} variant="primary" onClick={callTrello}>
-                       Login to Trello
-                    </Button>
+                    <a href='/trello'><Button isLoading={false} variant="primary">Login to Trello</Button></a>
                 </div>
             </div>
 
@@ -235,7 +215,7 @@ const Home = () => {
             <div className="row">
                 <div className="col-md-16">
                     <div className="card mt-3">
-                        <div className="card-header">Card Template</div>
+                        <div className="card-header">Trello Card Template</div>
                         <div className="card-body">
 
                             <div className="row">
@@ -254,7 +234,11 @@ const Home = () => {
                                                     QTY: {'{Product_Quantity}'}<br/>
                                                 </div>
                                                 {'{{/Every}}'}<br/><br/>
-                                                Address: {'{Shipping_Address}'}<br/><br/>
+                                                Address:<br/>
+                                                {'{shippingStreet1}'}<br/>
+                                                {'{shippingStreet2}'}<br/>
+                                                {'{shippingSuburb}'}, {'{shippingState}'} - {'{shippingPostcode}'}<br/>
+                                                {'{shippingCountry}'}<br/><br/>
                                                 Shipping Type: {'{Shipping_Method}'}<br/><br/>
                                                 Phone: {'{Customer_Phone}'}<br/>
                                                 Email: {'{Customer_Email}'}<br/><br/>
@@ -283,7 +267,11 @@ const Home = () => {
                                                     QTY: {'{Product_Quantity}'}<br/>
                                                 </div>
                                                 {'{{/Every}}'}<br/><br/>
-                                                Address: {'{Shipping_Address}'}<br/><br/>
+                                                Address:<br/>
+                                                {'{shippingStreet1}'}<br/>
+                                                {'{shippingStreet2}'}<br/>
+                                                {'{shippingSuburb}'}, {'{shippingState}'} - {'{shippingPostcode}'}<br/>
+                                                {'{shippingCountry}'}<br/><br/>
                                                 Shipping Type: {'{Shipping_Method}'}<br/><br/>
                                                 Phone: {'{Customer_Phone}'}<br/>
                                                 Email: {'{Customer_Email}'}<br/><br/>

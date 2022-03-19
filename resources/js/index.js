@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Home from './screens/home';
-import ListOfThings from './screens/list';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

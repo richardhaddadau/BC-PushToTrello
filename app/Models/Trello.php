@@ -10,23 +10,24 @@ class Trello extends Model
 {
     use HasFactory;
 
-    const AUTH_URL = 'https://trello.com/1/OAuthAuthorizeToken';
-    const AUTH_EXPIRATION = '1hour';
+    const AUTH_URL = 'https://trello.com/1/authorize';
     const AUTH_SCOPE = 'read,write';
+    const AUTH_EXPIRATION = '1hour';
     CONST AUTH_NAME = 'Push To Trello';
-    CONST BASE_URL = 'https://bc-push-to-trello.test/trello';
+    CONST BASE_URL = 'https://bc-push-to-trello.test/?';
 
     public function getAuthenticated() {
-        try {
-            $response = Http::get(self::AUTH_URL . '?expiration=' . self::AUTH_EXPIRATION . '&scope=' .
-                self::AUTH_SCOPE . '&name=' . self::AUTH_NAME . '&return_url=' . self::BASE_URL . '&key=' . env
-                ('TRELLO_KEY'));
+        $urlParams = array(
+            'return_url' => self::BASE_URL,
+            'scope' => self::AUTH_SCOPE,
+            'expiration' => self::AUTH_EXPIRATION,
+            'name' => self::AUTH_NAME,
+            'key' => env('TRELLO_KEY'),
+            'callback_method' => 'fragment',
+        );
 
-            return $response;
+        $trelloAuthUrl = self::AUTH_URL . '?' . http_build_query($urlParams);
 
-        } catch (\Throwable $exception) {
-            dd($exception->getMessage());
-        }
-
+        return redirect($trelloAuthUrl);
     }
 }
