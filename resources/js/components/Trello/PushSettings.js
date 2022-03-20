@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Button, Checkbox, Datepicker, Form, FormGroup, Select} from "@bigcommerce/big-design";
+import {clearCookie, cookieExists, setCookie} from "../ManageCookies";
 
 const getToday = () => {
     const newDate = new Date();
@@ -11,6 +12,12 @@ const getToday = () => {
 }
 
 const getBoards = (token) => {
+    axios.get(`trello-api/callTrello/${endpoint}/${token}`)
+        .then(res => console.log(res.data))
+        .catch(error => error);
+}
+
+const ssgetBoards = (token) => {
     fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" + token)
         .then((response) => response.json())
         .then((actualData) => {
@@ -55,6 +62,7 @@ const PushSettings = (props) => {
     const todayIs = getToday();
 
     // Declare States
+    const [checked, setChecked] = useState(false);
     const [trelloToken, setTrelloToken] = useState(props.token);
     const [dateOption, setDateOption] = useState('beginning');
     const [boardOption, setBoardOption] = useState('');
@@ -67,6 +75,8 @@ const PushSettings = (props) => {
     let boardsObj;
     let listsObj;
 
+    // When Checkbox Changes
+    const handleCheckbox = () => setChecked(!checked);
 
     return (
         <div className="row">

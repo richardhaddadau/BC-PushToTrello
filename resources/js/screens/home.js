@@ -3,53 +3,57 @@ import { GlobalStyles } from "@bigcommerce/big-design";
 import PromptLogin from "../components/Trello/PromptLogin";
 import PushSettings from "../components/Trello/PushSettings";
 import CardTemplate from "../components/Trello/CardTemplate";
-import {checkForToken, cookieExists, isTokenValid, clearCookie, setCookie} from '../components/ManageCookies';
+import {checkForToken, cookieExists, clearCookie, setCookie} from '../components/ManageCookies';
 
 const Home = () => {
     // Declare States
     const [checked, setChecked] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+    const [hasToken, setHasToken] = useState(false);
 
+    // Declare Variables
     const trelloToken = checkForToken();
-    const trelloCookie = cookieExists('trToken');
-    let promptLogin = false;
 
-    console.log(`${trelloToken}, ${trelloCookie}`);
-    console.log(isTokenValid(trelloToken));
+    // Check if token passed is valid
+    const isTokenValid = (token, tokenSource) => {
+        axios.get(`trello-api/valid-token/${token}`)
+            .then(res => {
+                clearCookie('trToken');
+                setCookie(token);
+                setIsValid(true);
+                setHasToken(true);
+            })
+            .catch(error => {
+                if (tokenSource === 'token') {
+                    const trelloCookie = cookieExists('trToken');
+                    if (!trelloToken) {
+                        setIsValid(false)
+                        setHasToken(false);
+                    } else {
+                        processCookie(trelloCookie);
+                    }
+                }
+            });
+    };
+
+    const processCookie = (cookie) => {
+        isTokenValid(cookie, 'cookie');
+    };
 
     if (trelloToken) {
-        if (isTokenValid(trelloToken)) {
-
-            clearCookie('trToken');
-            setCookie(trelloToken);
-            promptLogin = false;
-
-        } else {
-
-            if (isTokenValid(trelloCookie)) {
-
-                setTrelloToken(trelloCookie);
-                promptLogin = false;
-
-            } else {
-
-                promptLogin = true;
-
-            }
-        }
+        isTokenValid(trelloToken, 'token');
     }
-
-    // When Checkbox Changes
-    const handleCheckbox = () => setChecked(!checked);
 
     <GlobalStyles />
 
     return (
         <div className="container p-2 mb-2">
-            {promptLogin ?
+
+            {!hasToken ?
                 <PromptLogin /> : <PushSettings token={trelloToken} />
             }
 
-            {promptLogin ?
+            {!hasToken ?
                 null : <CardTemplate />
             }
 

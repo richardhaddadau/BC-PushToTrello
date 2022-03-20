@@ -34,24 +34,47 @@ class Trello extends Model
     }
 
     public function isTokenValid($trelloToken) {
-        $client = new Client();
-
-//        $result = $client->request('get', 'https://jsonplaceholder.typicode.com/todos/1');
-//        return $result->getStatusCode();
-
-        $testURL ='https://api.trello.com/1/members/me/boards?key=' . env('TRELLO_KEY') . '&token=' . $trelloToken;
-
-        try {
-            $response = Http::get('https://api.trello.com/1/members/me/boards', [
-                'key' => env('TRELLO_KEY'),
-                'token' => $trelloToken,
-            ]);
-            return $response->status();
-        } catch (RequestException $error) {
-            return 'Oops';
-            return $response->status();
+        if (env('APP_ENV') === 'local') {
+            $useToken = env('TRELLO_LOCAL_TOKEN');
+        } else {
+            $useToken = $trelloToken;
         }
-//        $result = $client->request('get', );
-        return $result->getStatusCode();
+
+        // https://api.trello.com/1/members/me/boards?key={api-key}&token={token}
+        $response = Http::get('https://api.trello.com/1/members/me/boards', [
+            'key' => env('TRELLO_KEY'),
+            'token' => $useToken,
+        ]);
+
+        return $response->status();
+    }
+
+    public function callTrello($endpoint, $trelloToken) {
+        if (env('APP_ENV') === 'local') {
+            $useToken = env('TRELLO_LOCAL_TOKEN');
+        } else {
+            $useToken = $trelloToken;
+        }
+
+        $response = Http::get('https://api.trello.com/1/' + $endpoint, [
+            'key' => env('TRELLO_KEY'),
+            'token' => $useToken,
+        ]);
+
+        return $response->body();
     }
 }
+
+//const getBoards = (token) => {
+//    fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" + token)
+//    .then((response) => response.json())
+//        .then((actualData) => {
+//        setBoardsList(actualData.filter(entity => {
+//            return !entity.closed;
+//        }).map(item => {
+//            return {value: item['shortLink'], content: item['name']};
+//            }));
+//
+//            setBoardsList(boardsObj);
+//        });
+//}

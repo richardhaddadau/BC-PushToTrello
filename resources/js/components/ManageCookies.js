@@ -3,7 +3,6 @@ import React from 'react';
 export {
     cookieExists,
     checkForToken,
-    isTokenValid,
     clearCookie,
     setCookie
 };
@@ -49,14 +48,6 @@ const checkForToken = () => {
 // Set a new cookie
 const setCookie = (token) => {
     document.cookie = 'trToken' + '=' + token;
-}
-
-// Check if token passed is valid
-const isTokenValid = (token) => {
-    axios.get(`trello-api/valid-token/${token}`).then(({data}) => {
-        console.log('D: ' + data);
-        return data === 200 ? true : false;
-    },[]);
 }
 
 // Delete Cookie
