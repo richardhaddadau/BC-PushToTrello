@@ -1,7 +1,83 @@
+import React, {useEffect, useState} from "react";
 import {Button, Checkbox, Datepicker, Form, FormGroup, Select} from "@bigcommerce/big-design";
-import React from "react";
+import {clearCookie, cookieExists, setCookie} from "../ManageCookies";
 
-const PushSettings = () => {
+const getToday = () => {
+    const newDate = new Date();
+    const day = newDate.getDate();
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    return `${month <10 ? `0${month}` : `${month}`}/${day}/${year}`;
+}
+
+const getBoards = (token) => {
+    axios.get(`trello-api/callTrello/${endpoint}/${token}`)
+        .then(res => console.log(res.data))
+        .catch(error => error);
+}
+
+const ssgetBoards = (token) => {
+    fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" + token)
+        .then((response) => response.json())
+        .then((actualData) => {
+            setBoardsList(actualData.filter(entity => {
+                return !entity.closed;
+            }).map(item => {
+                return {value: item['shortLink'], content: item['name']};
+            }));
+
+            setBoardsList(boardsObj);
+        });
+}
+
+const processBoardChange = (key) => {
+    if (key !== null) {
+        fetch("https://api.trello.com/1/boards/" + key +"/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
+            .then((response) => response.json())
+            .then((actualData) => {
+                setListsList(actualData.map(item => {
+                    return {value: item['id'], content: item['name']};
+                }));
+
+                setListsList(listsObj);
+        });
+    }
+}
+
+const processListChange = (key) => {
+    if (key !== null) {
+        fetch("https://api.trello.com/1/lists/" + key + "/cards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f")
+            .then(respose => respose.json())
+            .then(actualData => {
+                setCurrentList(actualData.map(item => {
+                    return <tr key={item['id']}><td key={item['id']} style={{ fontStyle: 'italic', fontSize: '80%' }}>{item['name']}</td></tr>;
+                }));
+            });
+    }
+}
+
+const PushSettings = (props) => {
+    // Declare Variables
+    const todayIs = getToday();
+
+    // Declare States
+    const [checked, setChecked] = useState(false);
+    const [trelloToken, setTrelloToken] = useState(props.token);
+    const [dateOption, setDateOption] = useState('beginning');
+    const [boardOption, setBoardOption] = useState('');
+    const [listOption, setListOption] = useState('');
+    const [currentList, setCurrentList] = useState('No list chosen');
+    const [date, setDate] = useState(`${todayIs}`);
+    const [boardsList, setBoardsList] = useState(null);
+    const [listsList, setListsList] = useState(null);
+
+    let boardsObj;
+    let listsObj;
+
+    // When Checkbox Changes
+    const handleCheckbox = () => setChecked(!checked);
+
     return (
         <div className="row">
             <div className="col-md-6">
