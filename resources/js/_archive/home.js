@@ -3,33 +3,27 @@ import { GlobalStyles } from "@bigcommerce/big-design";
 import PromptLogin from "../components/Trello/PromptLogin";
 import PushSettings from "../components/Trello/PushSettings";
 import CardTemplate from "../components/Trello/CardTemplate";
-import {
-    checkForToken,
-    cookieExists,
-    clearCookie,
-    setCookie,
-} from "../components/ManageCookies";
+
 import HomeMain from "../components/HomeMain";
 
 const Home = () => {
+    const [hasToken, setHasToken] = useState(false);
+
+    const checkForToken = () => {
+        const getHash = window.location.hash;
+        return getHash;
+    };
+
+    console.log(checkForToken());
+    return <div></div>;
+
     // Declare States
     const [checked, setChecked] = useState(false);
     const [isValid, setIsValid] = useState(false);
-    const [hasToken, setHasToken] = useState(false);
 
-    const tokenPassed = () => {
-        // Process Trello
-        const findToken = window.location.hash;
-
-        if (findToken.length === 0) return false;
-
-        const tokenHash = "#token=";
-
-        return findToken.toLowerCase().substring(0, tokenHash.length) ===
-            tokenHash
-            ? findToken.substring(tokenHash.length)
-            : false;
-    };
+    console.log("Run");
+    console.log(`Token: ${tokenPassed()}`);
+    console.log("Finished");
 
     // Declare Variables
     const trelloToken = tokenPassed();

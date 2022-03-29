@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './screens/home';
+import Home from "./screens/Home";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render((
+ReactDOM.render(
     <BrowserRouter>
         <div className="container">
             <div className="row">
@@ -15,7 +15,9 @@ ReactDOM.render((
         </div>
 
         <Routes>
-            <Route path='/' element={ <Home/> } />
+            <Route path="/" element={<Home />} />
         </Routes>
-    </BrowserRouter>
-), document.getElementById('root'));
+    </BrowserRouter>,
+
+    document.getElementById("root")
+);
