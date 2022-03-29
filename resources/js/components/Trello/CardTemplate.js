@@ -17,7 +17,7 @@ const templateShortcodes = {
 const previewTemplate = `
     {'{Customer_Name}'}<br/>
     {'{{Every}}'}}<br/>
-    <div className="ps-4">
+    <div class="ps-4">
         {'{Product_Name}'}<br/>
         SKU: {'{Product_SKU}'}<br/>
         QTY: {'{Product_Quantity}'}<br/>

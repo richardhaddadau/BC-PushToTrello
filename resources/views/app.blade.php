@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href={{ mix("/css/app.css") }}>
 
-    <title>Document</title>
+    <title>Push To Trello by 1VINE</title>
 </head>
 <body>
     <div id="root"></div>

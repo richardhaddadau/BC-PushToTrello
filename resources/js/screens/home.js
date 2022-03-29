@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { GlobalStyles } from "@bigcommerce/big-design";
 import PromptLogin from "../components/Trello/PromptLogin";
 import PushSettings from "../components/Trello/PushSettings";
 import CardTemplate from "../components/Trello/CardTemplate";
-import {checkForToken, cookieExists, clearCookie, setCookie} from '../components/ManageCookies';
+import {
+    checkForToken,
+    cookieExists,
+    clearCookie,
+    setCookie,
+} from "../components/ManageCookies";
+import HomeMain from "../components/HomeMain";
 
 const Home = () => {
     // Declare States
@@ -11,23 +17,40 @@ const Home = () => {
     const [isValid, setIsValid] = useState(false);
     const [hasToken, setHasToken] = useState(false);
 
+    const tokenPassed = () => {
+        // Process Trello
+        const findToken = window.location.hash;
+
+        if (findToken.length === 0) return false;
+
+        const tokenHash = "#token=";
+
+        return findToken.toLowerCase().substring(0, tokenHash.length) ===
+            tokenHash
+            ? findToken.substring(tokenHash.length)
+            : false;
+    };
+
     // Declare Variables
-    const trelloToken = checkForToken();
+    const trelloToken = tokenPassed();
+
+    return trelloToken;
 
     // Check if token passed is valid
     const isTokenValid = (token, tokenSource) => {
-        axios.get(`trello-api/valid-token/${token}`)
-            .then(res => {
-                clearCookie('trToken');
+        axios
+            .get(`trello-api/valid-token/${token}`)
+            .then((res) => {
+                clearCookie("trToken");
                 setCookie(token);
                 setIsValid(true);
                 setHasToken(true);
             })
-            .catch(error => {
-                if (tokenSource === 'token') {
-                    const trelloCookie = cookieExists('trToken');
+            .catch((error) => {
+                if (tokenSource === "token") {
+                    const trelloCookie = cookieExists("trToken");
                     if (!trelloToken) {
-                        setIsValid(false)
+                        setIsValid(false);
                         setHasToken(false);
                     } else {
                         processCookie(trelloCookie);
@@ -37,28 +60,20 @@ const Home = () => {
     };
 
     const processCookie = (cookie) => {
-        isTokenValid(cookie, 'cookie');
+        isTokenValid(cookie, "cookie");
     };
 
     if (trelloToken) {
-        isTokenValid(trelloToken, 'token');
+        isTokenValid(trelloToken, "token");
     }
 
-    <GlobalStyles />
+    <GlobalStyles />;
 
     return (
         <div className="container p-2 mb-2">
-
-            {!hasToken ?
-                <PromptLogin /> : <PushSettings token={trelloToken} />
-            }
-
-            {!hasToken ?
-                null : <CardTemplate />
-            }
-
+            {!hasToken ? <PromptLogin /> : <HomeMain trello={trelloToken} />}
         </div>
     );
-}
+};
 
 export default Home;

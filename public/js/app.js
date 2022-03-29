@@ -11839,6 +11839,37 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/HomeMain.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/HomeMain.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Trello_PushSettings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Trello/PushSettings */ "./resources/js/components/Trello/PushSettings.js");
+/* harmony import */ var _Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Trello/CardTemplate */ "./resources/js/components/Trello/CardTemplate.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var HomeMain = function HomeMain(token) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    token: token
+  }) // <CardTemplate />
+  ;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomeMain);
+
+/***/ }),
+
 /***/ "./resources/js/components/ManageCookies.js":
 /*!**************************************************!*\
   !*** ./resources/js/components/ManageCookies.js ***!
@@ -11860,7 +11891,7 @@ __webpack_require__.r(__webpack_exports__);
 var cookieExists = function cookieExists(cookieName) {
   if (!cookieName) return false; // Get all cookie values
 
-  var cookiesArray = document.cookie.split(';');
+  var cookiesArray = document.cookie.split(";");
   var trelloToken; // Remove whitespace from the start of every cookie found
 
   for (var item in cookiesArray) {
@@ -11880,19 +11911,18 @@ var checkForToken = function checkForToken() {
   // Process Trello
   var findToken = window.location.hash;
   if (findToken.length === 0) return false;
-  var tokenHash = '#token=';
-  var getToken = findToken.toLowerCase().substring(0, tokenHash.length) === tokenHash ? findToken.substring(tokenHash.length) : false;
-  return getToken;
+  var tokenHash = "#token=";
+  return findToken.toLowerCase().substring(0, tokenHash.length) === tokenHash ? findToken.substring(tokenHash.length) : false;
 }; // Set a new cookie
 
 
 var setCookie = function setCookie(token) {
-  document.cookie = 'trToken' + '=' + token;
+  document.cookie = "trToken" + "=" + token;
 }; // Delete Cookie
 
 
 var clearCookie = function clearCookie(token) {
-  document.cookie = token + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+  document.cookie = token + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 };
 
 /***/ }),
@@ -11938,7 +11968,7 @@ var templateShortcodes = {
   'shippingEmail': 'jane.doe@example.com',
   'shippingPhone': '+61 0412 345 678'
 };
-var previewTemplate = "\n    {'{Customer_Name}'}<br/>\n    {'{{Every}}'}}<br/>\n    <div className=\"ps-4\">\n        {'{Product_Name}'}<br/>\n        SKU: {'{Product_SKU}'}<br/>\n        QTY: {'{Product_Quantity}'}<br/>\n    </div>\n    {'{{/Every}}'}<br/><br/>\n    Address: {'{Shipping_Address}'}<br/><br/>\n    Shipping Type: {'{Shipping_Method}'}<br/><br/>\n    Phone: {'{Customer_Phone}'}<br/>\n    Email: {'{Customer_Email}'}<br/><br/>\n    ---<br/><br/>\n    Details:<br/>\n    {'{Customer_Comments}'}\n    ";
+var previewTemplate = "\n    {'{Customer_Name}'}<br/>\n    {'{{Every}}'}}<br/>\n    <div class=\"ps-4\">\n        {'{Product_Name}'}<br/>\n        SKU: {'{Product_SKU}'}<br/>\n        QTY: {'{Product_Quantity}'}<br/>\n    </div>\n    {'{{/Every}}'}<br/><br/>\n    Address: {'{Shipping_Address}'}<br/><br/>\n    Shipping Type: {'{Shipping_Method}'}<br/><br/>\n    Phone: {'{Customer_Phone}'}<br/>\n    Email: {'{Customer_Email}'}<br/><br/>\n    ---<br/><br/>\n    Details:<br/>\n    {'{Customer_Comments}'}\n    ";
 
 var CardTemplate = function CardTemplate() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
@@ -12114,66 +12144,6 @@ var getToday = function getToday() {
   return "".concat(month < 10 ? "0".concat(month) : "".concat(month), "/").concat(day, "/").concat(year);
 };
 
-var getBoards = function getBoards(token) {
-  axios.get("trello-api/callTrello/".concat(endpoint, "/").concat(token)).then(function (res) {
-    return console.log(res.data);
-  })["catch"](function (error) {
-    return error;
-  });
-};
-
-var ssgetBoards = function ssgetBoards(token) {
-  fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" + token).then(function (response) {
-    return response.json();
-  }).then(function (actualData) {
-    setBoardsList(actualData.filter(function (entity) {
-      return !entity.closed;
-    }).map(function (item) {
-      return {
-        value: item['shortLink'],
-        content: item['name']
-      };
-    }));
-    setBoardsList(boardsObj);
-  });
-};
-
-var processBoardChange = function processBoardChange(key) {
-  if (key !== null) {
-    fetch("https://api.trello.com/1/boards/" + key + "/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (response) {
-      return response.json();
-    }).then(function (actualData) {
-      setListsList(actualData.map(function (item) {
-        return {
-          value: item['id'],
-          content: item['name']
-        };
-      }));
-      setListsList(listsObj);
-    });
-  }
-};
-
-var processListChange = function processListChange(key) {
-  if (key !== null) {
-    fetch("https://api.trello.com/1/lists/" + key + "/cards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (respose) {
-      return respose.json();
-    }).then(function (actualData) {
-      setCurrentList(actualData.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-            style: {
-              fontStyle: 'italic',
-              fontSize: '80%'
-            },
-            children: item['name']
-          }, item['id'])
-        }, item['id']);
-      }));
-    });
-  }
-};
-
 var PushSettings = function PushSettings(props) {
   // Declare Variables
   var todayIs = getToday(); // Declare States
@@ -12188,22 +12158,22 @@ var PushSettings = function PushSettings(props) {
       trelloToken = _useState4[0],
       setTrelloToken = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('beginning'),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("beginning"),
       _useState6 = _slicedToArray(_useState5, 2),
       dateOption = _useState6[0],
       setDateOption = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       boardOption = _useState8[0],
       setBoardOption = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState10 = _slicedToArray(_useState9, 2),
       listOption = _useState10[0],
       setListOption = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('No list chosen'),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("No list chosen"),
       _useState12 = _slicedToArray(_useState11, 2),
       currentList = _useState12[0],
       setCurrentList = _useState12[1];
@@ -12224,7 +12194,72 @@ var PushSettings = function PushSettings(props) {
       setListsList = _useState18[1];
 
   var boardsObj;
-  var listsObj; // When Checkbox Changes
+  var listsObj;
+
+  var getBoards = function getBoards() {
+    axios("trello-api/callTrello/members/me/boards").then(function (res) {
+      return console.log(res.data);
+    })["catch"](function (err) {
+      return console.log("Oops: ".concat(err));
+    });
+  };
+
+  var ssgetBoards = function ssgetBoards(token) {
+    fetch("https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" + token).then(function (response) {
+      return response.json();
+    }).then(function (actualData) {
+      setBoardsList(actualData.filter(function (entity) {
+        return !entity.closed;
+      }).map(function (item) {
+        return {
+          value: item["shortLink"],
+          content: item["name"]
+        };
+      }));
+      setBoardsList(boardsObj);
+    });
+  };
+
+  var processBoardChange = function processBoardChange(key) {
+    if (key !== null) {
+      fetch("https://api.trello.com/1/boards/" + key + "/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (response) {
+        return response.json();
+      }).then(function (actualData) {
+        setListsList(actualData.map(function (item) {
+          return {
+            value: item["id"],
+            content: item["name"]
+          };
+        }));
+        setListsList(listsObj);
+      });
+    }
+  };
+
+  var processListChange = function processListChange(key) {
+    if (key !== null) {
+      fetch("https://api.trello.com/1/lists/" + key + "/cards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f").then(function (respose) {
+        return respose.json();
+      }).then(function (actualData) {
+        setCurrentList(actualData.map(function (item) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+              style: {
+                fontStyle: "italic",
+                fontSize: "80%"
+              },
+              children: item["name"]
+            }, item["id"])
+          }, item["id"]);
+        }));
+      });
+    }
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log("Start...");
+    getBoards();
+  }); // When Checkbox Changes
 
   var handleCheckbox = function handleCheckbox() {
     return setChecked(!checked);
@@ -12252,13 +12287,13 @@ var PushSettings = function PushSettings(props) {
                   processBoardChange(boardOption);
                 },
                 options: boardsList,
-                placeholder: 'Select a board',
-                placement: 'bottom-start',
+                placeholder: "Select a board",
+                placement: "bottom-start",
                 required: true,
                 value: boardOption
               }) : null
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-              children: boardOption !== '' ? listsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {
+              children: boardOption !== "" ? listsList !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {
                 filterable: true,
                 label: "Choose a Trello List to Sync to:",
                 maxHeight: 300,
@@ -12267,8 +12302,8 @@ var PushSettings = function PushSettings(props) {
                   processListChange(listOption);
                 },
                 options: listsList,
-                placeholder: 'Select a list',
-                placement: 'bottom-start',
+                placeholder: "Select a list",
+                placement: "bottom-start",
                 required: true,
                 value: listOption
               }) : null : null
@@ -12301,18 +12336,18 @@ var PushSettings = function PushSettings(props) {
                   return setDateOption(dateOption);
                 },
                 options: [{
-                  value: 'beginning',
-                  content: 'Beginning of time'
+                  value: "beginning",
+                  content: "Beginning of time"
                 }, {
-                  value: 'from',
-                  content: 'Specific date'
+                  value: "from",
+                  content: "Specific date"
                 }],
-                placeholder: 'Select an option',
-                placement: 'bottom-start',
+                placeholder: "Select an option",
+                placement: "bottom-start",
                 required: true,
                 value: dateOption
               })
-            }), dateOption === 'from' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+            }), dateOption === "from" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Datepicker, {
                 label: "Pick a date",
                 min: "01/01/2021",
@@ -12393,12 +12428,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/GlobalStyles/GlobalStyles.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/GlobalStyles/GlobalStyles.js");
 /* harmony import */ var _components_Trello_PromptLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Trello/PromptLogin */ "./resources/js/components/Trello/PromptLogin.js");
 /* harmony import */ var _components_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Trello/PushSettings */ "./resources/js/components/Trello/PushSettings.js");
 /* harmony import */ var _components_Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Trello/CardTemplate */ "./resources/js/components/Trello/CardTemplate.js");
 /* harmony import */ var _components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ManageCookies */ "./resources/js/components/ManageCookies.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_HomeMain__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/HomeMain */ "./resources/js/components/HomeMain.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -12435,20 +12471,29 @@ var Home = function Home() {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       hasToken = _useState6[0],
-      setHasToken = _useState6[1]; // Declare Variables
+      setHasToken = _useState6[1];
+
+  var tokenPassed = function tokenPassed() {
+    // Process Trello
+    var findToken = window.location.hash;
+    if (findToken.length === 0) return false;
+    var tokenHash = "#token=";
+    return findToken.toLowerCase().substring(0, tokenHash.length) === tokenHash ? findToken.substring(tokenHash.length) : false;
+  }; // Declare Variables
 
 
-  var trelloToken = (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.checkForToken)(); // Check if token passed is valid
+  var trelloToken = tokenPassed();
+  return trelloToken; // Check if token passed is valid
 
   var isTokenValid = function isTokenValid(token, tokenSource) {
     axios.get("trello-api/valid-token/".concat(token)).then(function (res) {
-      (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.clearCookie)('trToken');
+      (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.clearCookie)("trToken");
       (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.setCookie)(token);
       setIsValid(true);
       setHasToken(true);
     })["catch"](function (error) {
-      if (tokenSource === 'token') {
-        var trelloCookie = (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.cookieExists)('trToken');
+      if (tokenSource === "token") {
+        var trelloCookie = (0,_components_ManageCookies__WEBPACK_IMPORTED_MODULE_4__.cookieExists)("trToken");
 
         if (!trelloToken) {
           setIsValid(false);
@@ -12461,21 +12506,21 @@ var Home = function Home() {
   };
 
   var processCookie = function processCookie(cookie) {
-    isTokenValid(cookie, 'cookie');
+    isTokenValid(cookie, "cookie");
   };
 
   if (trelloToken) {
-    isTokenValid(trelloToken, 'token');
+    isTokenValid(trelloToken, "token");
   }
 
   /*#__PURE__*/
-  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.GlobalStyles, {});
+  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.GlobalStyles, {});
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "container p-2 mb-2",
-    children: [!hasToken ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Trello_PromptLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      token: trelloToken
-    }), !hasToken ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+    children: !hasToken ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Trello_PromptLogin__WEBPACK_IMPORTED_MODULE_1__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_HomeMain__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      trello: trelloToken
+    })
   });
 };
 
