@@ -11,6 +11,5 @@ const CheckTrello = () => {
 
     if (findToken.substring(0, tokenHash.length) === tokenHash) {
         const getToken = findToken.substring(tokenHash.length);
-        console.log(getToken);
     }
 }

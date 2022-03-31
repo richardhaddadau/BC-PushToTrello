@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Client;
 
 class Trello extends Model
 {
@@ -33,7 +31,8 @@ class Trello extends Model
         return redirect($trelloAuthUrl);
     }
 
-    public function isTokenValid($trelloToken) {
+    public function isTokenValid($trelloToken): int
+    {
         if (env('APP_ENV') === 'local') {
             $useToken = env('TRELLO_LOCAL_TOKEN');
         } else {
@@ -50,7 +49,8 @@ class Trello extends Model
         return $response->status();
     }
 
-    public function callTrello($get, $token) {
+    public function callTrello($get, $token): string
+    {
         return 'Got: ' . $get . ', Token: ' . $token;
 
         if (env('APP_ENV') === 'local') {

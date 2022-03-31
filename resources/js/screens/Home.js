@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import {
     checkForToken,
     checkForCookie,
@@ -16,12 +17,13 @@ const Home = () => {
     const validateToken = async (token) => {
         let result = await axios.get("/trello-api/valid-token/" + token);
 
+        console.log(result);
+
         if ((await result.data) === 200) {
             clearCookie();
             setCookie(token);
-            return setValidToken(token);
+            return token;
         } else {
-            setValidToken(false);
             return false;
         }
     };
@@ -45,8 +47,7 @@ const Home = () => {
 
     return (
         <div>
-            {console.log("Found Valid: " + validToken)}
-            {validToken ? <PromptLogin /> : <HomeMain token={validToken} />}
+            {validToken ? <HomeMain token={validToken} /> : <PromptLogin />}
         </div>
     );
 };

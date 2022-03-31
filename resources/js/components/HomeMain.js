@@ -5,7 +5,6 @@ import CardTemplate from "./Trello/CardTemplate";
 const HomeMain = (token) => {
     return (
         <div>
-            {console.log("Home Main: " + token)}
             <PushSettings token={token} />
             <CardTemplate />
         </div>
