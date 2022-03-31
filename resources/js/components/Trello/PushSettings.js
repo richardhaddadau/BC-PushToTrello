@@ -7,7 +7,6 @@ import {
     FormGroup,
     Select,
 } from "@bigcommerce/big-design";
-import { clearCookie, cookieExists, setCookie } from "../ManageCookies";
 
 const getToday = () => {
     const newDate = new Date();
@@ -18,13 +17,13 @@ const getToday = () => {
     return `${month < 10 ? `0${month}` : `${month}`}/${day}/${year}`;
 };
 
-const PushSettings = (props) => {
+const PushSettings = (token) => {
     // Declare Variables
     const todayIs = getToday();
 
     // Declare States
     const [checked, setChecked] = useState(false);
-    const [trelloToken, setTrelloToken] = useState(props.token);
+    const [trelloToken, setTrelloToken] = useState(token);
     const [dateOption, setDateOption] = useState("beginning");
     const [boardOption, setBoardOption] = useState("");
     const [listOption, setListOption] = useState("");
@@ -33,38 +32,22 @@ const PushSettings = (props) => {
     const [boardsList, setBoardsList] = useState(null);
     const [listsList, setListsList] = useState(null);
 
-    let boardsObj;
     let listsObj;
 
-    const getBoards = () => {
-        axios("trello-api/callTrello/members/me/boards")
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(`Oops: ${err}`));
+    console.log("Found: " + token);
+
+    const getBoards = async () => {
+        let result = await axios(
+            `trello-api/callTrello/members/me/boards/${token}`
+        );
+
+        console.log(result);
+        return false;
     };
 
-    const ssgetBoards = (token) => {
-        fetch(
-            "https://api.trello.com/1/members/me/boards?key=366d3a7f27ff81fde9157811979f86e7&token=" +
-                token
-        )
-            .then((response) => response.json())
-            .then((actualData) => {
-                setBoardsList(
-                    actualData
-                        .filter((entity) => {
-                            return !entity.closed;
-                        })
-                        .map((item) => {
-                            return {
-                                value: item["shortLink"],
-                                content: item["name"],
-                            };
-                        })
-                );
-
-                setBoardsList(boardsObj);
-            });
-    };
+    useEffect(() => {
+        getBoards();
+    }, []);
 
     const processBoardChange = (key) => {
         if (key !== null) {

@@ -50,8 +50,8 @@ class Trello extends Model
         return $response->status();
     }
 
-    public function callTrello($get) {
-        return 'Got: ' . $get;
+    public function callTrello($get, $token) {
+        return 'Got: ' . $get . ', Token: ' . $token;
 
         if (env('APP_ENV') === 'local') {
             $useToken = env('TRELLO_LOCAL_TOKEN');
