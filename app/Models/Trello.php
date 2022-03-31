@@ -40,6 +40,7 @@ class Trello extends Model
             $useToken = $trelloToken;
         }
 
+        // Make a call to trello: 200 means token is valid, anything else means invalid
         // https://api.trello.com/1/members/me/boards?key={api-key}&token={token}
         $response = Http::get('https://api.trello.com/1/members/me/boards', [
             'key' => env('TRELLO_KEY'),
@@ -49,7 +50,9 @@ class Trello extends Model
         return $response->status();
     }
 
-    public function callTrello($endpoint, $trelloToken) {
+    public function callTrello($get, $token) {
+        return 'Got: ' . $get . ', Token: ' . $token;
+
         if (env('APP_ENV') === 'local') {
             $useToken = env('TRELLO_LOCAL_TOKEN');
         } else {

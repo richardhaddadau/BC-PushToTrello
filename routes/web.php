@@ -23,6 +23,11 @@ Route::group(['prefix' => 'trello-api'], function() {
     Route::get('/valid-token/{token}', function ($token, Trello $trello) {
         return $trello->isTokenValid($token);
     });
+
+    Route::get('/callTrello/{get}/{token}', function ($get, $token, Trello $trello) {
+        return $token;
+        return $trello->callTrello($get, $token);
+    })->where('get','.*');
 });
 
 Route::get('/{url?}', function () {
