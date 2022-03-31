@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
+    Button,
+    Checkbox,
+    Datepicker,
     Form,
     FormGroup,
     Select,
-    Datepicker,
-    Checkbox,
-    Button,
 } from "@bigcommerce/big-design";
-import axios from "axios";
 
-// Get Today's Date
 const getToday = () => {
     const newDate = new Date();
     const day = newDate.getDate();
@@ -19,72 +17,69 @@ const getToday = () => {
     return `${month < 10 ? `0${month}` : `${month}`}/${day}/${year}`;
 };
 
-const PushSettings = ({ token }) => {
-    // Variables
+const PushSettings = (token) => {
+    // Declare Variables
     const todayIs = getToday();
 
-    // States
-    const [boardOption, setBoardOption] = useState(0);
-    const [listOption, setListOption] = useState(0);
-    const [boardsList, setBoardsList] = useState([]);
-    const [listsList, setListsList] = useState([]);
-    const [currentList, setCurrentList] = useState("No list chosen");
-    const [dateOption, setDateOption] = useState("beginning");
-    const [date, setDate] = useState(`${todayIs}`);
+    // Declare States
     const [checked, setChecked] = useState(false);
+    const [trelloToken, setTrelloToken] = useState(token);
+    const [dateOption, setDateOption] = useState("beginning");
+    const [boardOption, setBoardOption] = useState("");
+    const [listOption, setListOption] = useState("");
+    const [currentList, setCurrentList] = useState("No list chosen");
+    const [date, setDate] = useState(`${todayIs}`);
+    const [boardsList, setBoardsList] = useState(null);
+    const [listsList, setListsList] = useState(null);
 
-    // When Checkbox Changes
-    const handleCheckbox = () => setChecked(!checked);
+    let listsObj;
 
-    // Getting list of Boards
-    const getBoards = () => {
-        axios
-            .get(
-                `trello-api/callTrello/token/${token}/endpoint/members/me/boards`
-            )
-            .then((res) => {
-                const boards = res.data;
+    console.log("Found: " + token);
 
-                setBoardsList(
-                    boards.map((item) => {
-                        return { value: item["id"], content: item["name"] };
-                    })
-                );
-            });
+    const getBoards = async () => {
+        let result = await axios(
+            `trello-api/callTrello/members/me/boards/${token}`
+        );
+
+        console.log(result);
+        return false;
     };
 
-    // Process Board Change
+    useEffect(() => {
+        getBoards();
+    }, []);
+
     const processBoardChange = (key) => {
         if (key !== null) {
-            axios
-                .get(
-                    `trello-api/callTrello/token/${token}/endpoint/boards/${key}/lists`
-                )
-                .then((response) => {
-                    const lists = response.data;
-
+            fetch(
+                "https://api.trello.com/1/boards/" +
+                    key +
+                    "/lists?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f"
+            )
+                .then((response) => response.json())
+                .then((actualData) => {
                     setListsList(
-                        lists.map((item) => {
+                        actualData.map((item) => {
                             return { value: item["id"], content: item["name"] };
                         })
                     );
+
+                    setListsList(listsObj);
                 });
         }
     };
 
-    // Process List Change
     const processListChange = (key) => {
         if (key !== null) {
-            axios
-                .get(
-                    `trello-api/callTrello/token/${token}/endpoint/lists/${key}/cards`
-                )
-                .then((response) => {
-                    const cards = response.data;
-
-                    console.log(cards);
+            fetch(
+                "https://api.trello.com/1/lists/" +
+                    key +
+                    "/cards?key=366d3a7f27ff81fde9157811979f86e7&token=2aa9ac92d328f0f441c7a8d6cd4eb3c3cbf3a6578822ac2672a22d00584c426f"
+            )
+                .then((respose) => respose.json())
+                .then((actualData) => {
                     setCurrentList(
-                        cards.map((item) => {
+                        actualData.map((item) => {
                             return (
                                 <tr key={item["id"]}>
                                     <td
@@ -105,14 +100,19 @@ const PushSettings = ({ token }) => {
     };
 
     useEffect(() => {
+        console.log("Start...");
         getBoards();
-    }, []);
+    });
+
+    // When Checkbox Changes
+    const handleCheckbox = () => setChecked(!checked);
 
     return (
         <div className="row">
             <div className="col-md-6">
                 <div className="card">
                     <div className="card-header">Push to Trello</div>
+
                     <div className="card-body">
                         <Form>
                             <FormGroup>
@@ -121,20 +121,21 @@ const PushSettings = ({ token }) => {
                                         filterable={true}
                                         label="Choose a Trello Board to Sync to:"
                                         maxHeight={300}
-                                        options={boardsList}
                                         onOptionChange={(boardOption) => {
                                             setBoardOption(boardOption);
                                             processBoardChange(boardOption);
                                         }}
+                                        options={boardsList}
                                         placeholder={"Select a board"}
                                         placement={"bottom-start"}
-                                        value={boardOption}
                                         required
+                                        value={boardOption}
                                     />
                                 ) : null}
                             </FormGroup>
+
                             <FormGroup>
-                                {boardsList !== "" ? (
+                                {boardOption !== "" ? (
                                     listsList !== null ? (
                                         <Select
                                             filterable={true}
@@ -153,6 +154,7 @@ const PushSettings = ({ token }) => {
                                     ) : null
                                 ) : null}
                             </FormGroup>
+
                             <FormGroup>
                                 <Checkbox
                                     label="Turn on automatic sync"
@@ -164,9 +166,11 @@ const PushSettings = ({ token }) => {
                     </div>
                 </div>
             </div>
+
             <div className="col-md-6">
                 <div className="card">
                     <div className="card-header">Manual Push</div>
+
                     <div className="card-body">
                         <Form>
                             <FormGroup>
@@ -193,6 +197,7 @@ const PushSettings = ({ token }) => {
                                     value={dateOption}
                                 />
                             </FormGroup>
+
                             {dateOption === "from" ? (
                                 <FormGroup>
                                     <Datepicker
@@ -205,6 +210,7 @@ const PushSettings = ({ token }) => {
                                     />
                                 </FormGroup>
                             ) : null}
+
                             <FormGroup>
                                 <Button>Sync Now</Button>
                             </FormGroup>

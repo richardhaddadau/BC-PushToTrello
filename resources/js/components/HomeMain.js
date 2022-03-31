@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import PushSettings from "./Trello/PushSettings";
 import CardTemplate from "./Trello/CardTemplate";
 
-const HomeMain = (token) => {
+const HomeMain = ({ token }) => {
+    // States
+    const [isLoading, setLoading] = useState(true);
+
     return (
         <div>
-            <PushSettings token={token} />
+            {token ? <PushSettings token={token} /> : null}
             <CardTemplate />
         </div>
     );

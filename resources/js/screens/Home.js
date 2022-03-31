@@ -12,20 +12,42 @@ import HomeMain from "../components/HomeMain";
 const Home = () => {
     // States
     const [validToken, setValidToken] = useState(false);
+    const [validated, setValidated] = useState(false);
+    const [isLoading, setLoading] = useState(true);
 
     // Token Functions
-    const validateToken = async (token) => {
-        let result = await axios.get("/trello-api/valid-token/" + token);
+    const validateToken = (token, cookie) => {
+        axios
+            .all([
+                axios.get("/trello-api/valid-token/" + token),
+                axios.get("/trello-api/valid-token/" + cookie),
+            ])
+            .then(
+                axios.spread((...responses) => {
+                    const tokenStatus = responses[0].data;
+                    const cookieStatus = responses[1].data;
 
-        console.log(result);
+                    if (tokenStatus === 200) {
+                        clearCookie();
+                        setCookie(token);
 
-        if ((await result.data) === 200) {
-            clearCookie();
-            setCookie(token);
-            return token;
-        } else {
-            return false;
-        }
+                        setValidated(true);
+                        setValidToken(token);
+                    } else if (cookieStatus === 200) {
+                        setValidated(true);
+                        setValidToken(cookie);
+                    } else {
+                        clearCookie();
+                        setValidated(false);
+                    }
+
+                    setLoading(false);
+                })
+            )
+            .catch((err) => {
+                console.log("Oops");
+                // handle errors
+            });
     };
 
     // Run on load
@@ -34,20 +56,20 @@ const Home = () => {
         // Example: /?#token=a5701ed85cca8050e47ad879831c740d3457f44351f09ad75fbf5cb306b35874
         const getHash = window.location.hash;
         let foundToken = checkForToken(getHash);
+        let foundCookie = checkForCookie();
 
-        if (foundToken && validateToken(foundToken)) {
-            setValidToken(foundToken);
-        } else {
-            let foundCookie = checkForCookie();
-            if (foundCookie && validateToken(foundCookie)) {
-                setValidToken(foundCookie);
-            }
-        }
+        validateToken(foundToken, foundCookie);
     }, []);
 
     return (
-        <div>
-            {validToken ? <HomeMain token={validToken} /> : <PromptLogin />}
+        <div className="container">
+            <div className="row">
+                {validated ? (
+                    <HomeMain token={validToken} />
+                ) : (
+                    <PromptLogin loading={isLoading} />
+                )}
+            </div>
         </div>
     );
 };
