@@ -9,6 +9,8 @@ import {
 import PromptLogin from "../components/Trello/PromptLogin";
 import HomeMain from "../components/HomeMain";
 
+import ShopInfoGenerator from "../components/shopInfoGenerator";
+
 const Home = () => {
     // States
     const [validToken, setValidToken] = useState(false);
@@ -69,6 +71,7 @@ const Home = () => {
                 ) : (
                     <PromptLogin loading={isLoading} />
                 )}
+                <ShopInfoGenerator />
             </div>
         </div>
     );
