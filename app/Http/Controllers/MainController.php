@@ -187,7 +187,7 @@ class MainController extends Controller
             $requestOptions['body'] = $request->getContent();
         }
 
-        $client = new Client(['verify' => 'C:\laragon\etc\ssl\cacert.pem']);
+        $client = new Client();
 
         // Using API v2 Environment: https://api.bigcommerce.com/stores/{{store_hash}}/v2/
         // Source: https://developer.bigcommerce.com/docs/ZG9jOjIyMDYwNQ-about-our-ap-is
