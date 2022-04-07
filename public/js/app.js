@@ -11933,18 +11933,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Trello_PushSettings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Trello/PushSettings */ "./resources/js/components/Trello/PushSettings.js");
 /* harmony import */ var _Trello_CardTemplate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Trello/CardTemplate */ "./resources/js/components/Trello/CardTemplate.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -11953,13 +11941,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var HomeMain = function HomeMain(_ref) {
   var token = _ref.token;
-
-  // States
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState2 = _slicedToArray(_useState, 2),
-      isLoading = _useState2[0],
-      setLoading = _useState2[1];
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     children: [token ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Trello_PushSettings__WEBPACK_IMPORTED_MODULE_1__["default"], {
       token: token
@@ -12346,6 +12327,24 @@ var PushSettings = function PushSettings(_ref) {
         }));
       });
     }
+  }; // Get Order Numbers
+
+
+  var getOrderNumbers = function getOrderNumbers() {
+    var config = {
+      method: "get",
+      url: "/bc-api/v3/order"
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default()(config).then(function (response) {
+      var orders = response.data;
+      console.log(response.data); // setListsList(
+      //     lists.map((item) => {
+      //         return { value: item["id"], content: item["name"] };
+      //     })
+      // );
+    })["catch"](function (error) {
+      console.log(error);
+    });
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -12425,15 +12424,18 @@ var PushSettings = function PushSettings(_ref) {
                   value: "beginning",
                   content: "Beginning of time"
                 }, {
-                  value: "from",
+                  value: "date",
                   content: "Specific date"
+                }, {
+                  value: "order",
+                  content: "Specific Order"
                 }],
                 placeholder: "Select an option",
                 placement: "bottom-start",
                 required: true,
                 value: dateOption
               })
-            }), dateOption === "from" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+            }), dateOption === "date" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Datepicker, {
                 label: "Pick a date",
                 min: "01/01/2021",
@@ -12444,6 +12446,8 @@ var PushSettings = function PushSettings(_ref) {
                 value: date,
                 locale: "en-AU"
               })
+            }) : null, dateOption === "order" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {})
             }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__.Button, {
                 children: "Sync Now"
@@ -12566,44 +12570,6 @@ var generateCustomers = function generateCustomers(iterations) {
   console.log(newSet);
 };
 
-var generateOrders = function generateOrders(iterations) {
-  var newSet = [];
-
-  for (var counter = 0; counter < iterations; counter++) {
-    var newFirst = generateFirstName();
-    var newLast = generateLastName();
-    var newStreet = generateStreetAddress();
-    var newCity = generateCity();
-    var newState = generateState();
-    var newZip = generateZip();
-    var newCountry = generateCountry();
-    var newCountryCode = generateCountryCode();
-    var newEmail = generateEmail();
-    console.log(getProducts());
-    newSet.push({
-      billing_address: {
-        first_name: newFirst,
-        last_name: newLast,
-        street_1: newStreet,
-        city: newCity,
-        state: newState,
-        zip: newZip,
-        country: newCountry,
-        country_iso2: newCountryCode,
-        email: newEmail
-      },
-      products: [{
-        name: "",
-        quantity: Math.floor(Math.random() * 10 + 1),
-        prince_inc_tax: 0,
-        prince_ex_tax: 0
-      }]
-    });
-  }
-
-  console.log(newSet);
-};
-
 var generateFirstName = function generateFirstName() {
   var useArray = shuffleArray([].concat(_toConsumableArray(_assets_boys_names__WEBPACK_IMPORTED_MODULE_2__.boys_names), _toConsumableArray(_assets_girls_names__WEBPACK_IMPORTED_MODULE_3__.girls_names)));
   return useArray[Math.floor(Math.random() * useArray.length)];
@@ -12643,11 +12609,23 @@ var generateCountryCode = function generateCountryCode() {
   return "AU";
 };
 
+var getOrders = function getOrders() {
+  var config = {
+    method: "get",
+    url: "/bc-api/v2/orders"
+  };
+  axios__WEBPACK_IMPORTED_MODULE_1___default()(config).then(function (response) {
+    console.log(response.data);
+  })["catch"](function (error) {
+    console.log(error);
+  });
+};
+
 var ShopInfoGenerator = function ShopInfoGenerator() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
-      products = _useState2[0],
-      setProducts = _useState2[1];
+      loadedProducts = _useState2[0],
+      setLoadedProducts = _useState2[1];
 
   var getProducts = function getProducts() {
     var config = {
@@ -12655,15 +12633,66 @@ var ShopInfoGenerator = function ShopInfoGenerator() {
       url: "/bc-api/v3/catalog/products"
     };
     axios__WEBPACK_IMPORTED_MODULE_1___default()(config).then(function (response) {
-      console.log(response.data);
+      var result = response.data;
+      setLoadedProducts(result.data);
+      generateOrders(40, result.data);
     })["catch"](function (error) {
       console.log(error);
     });
   };
 
+  var generateOrders = function generateOrders(iterations, productsObjects) {
+    var newSet = [];
+
+    for (var counter = 0; counter < iterations; counter++) {
+      var newFirst = generateFirstName();
+      var newLast = generateLastName();
+      var newStreet = generateStreetAddress();
+      var newCity = generateCity();
+      var newState = generateState();
+      var newZip = generateZip();
+      var newCountry = generateCountry();
+      var newCountryCode = generateCountryCode();
+      var newEmail = generateEmail(newFirst, newLast);
+      var productsArray = [];
+
+      var setOfProducts = _toConsumableArray(productsObjects);
+
+      var numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
+
+      for (var x = 0; x < numberOfProducts; x++) {
+        var productAtRandom = Math.floor(Math.random() * setOfProducts.length);
+        var thisProduct = productsObjects[productAtRandom];
+        productsArray.push({
+          name: thisProduct["name"],
+          quantity: Math.floor(Math.random() * 5 + 1),
+          prince_inc_tax: parseFloat((thisProduct["price"] * 1.1).toFixed(2)),
+          prince_ex_tax: parseFloat(thisProduct["price"].toFixed(2))
+        });
+        setOfProducts.splice(productAtRandom, 1);
+      }
+
+      newSet.push({
+        billing_address: {
+          first_name: newFirst,
+          last_name: newLast,
+          street_1: newStreet,
+          city: newCity,
+          state: newState,
+          zip: newZip,
+          country: newCountry,
+          country_iso2: newCountryCode,
+          email: newEmail
+        },
+        products: productsArray
+      });
+    }
+
+    console.log(newSet);
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // generateCustomers(10);
-    // generateOrders(5);
     getProducts();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {});
@@ -12779,12 +12808,12 @@ var Home = function Home() {
       var tokenStatus = responses[0].data;
       var cookieStatus = responses[1].data;
 
-      if (tokenStatus === 200) {
+      if (token && tokenStatus === 200) {
         (0,_components_TokenMethods__WEBPACK_IMPORTED_MODULE_1__.clearCookie)();
         (0,_components_TokenMethods__WEBPACK_IMPORTED_MODULE_1__.setCookie)(token);
         setValidated(true);
         setValidToken(token);
-      } else if (cookieStatus === 200) {
+      } else if (cookie && cookieStatus === 200) {
         setValidated(true);
         setValidToken(cookie);
       } else {

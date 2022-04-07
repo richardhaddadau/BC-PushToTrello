@@ -65,48 +65,6 @@ const generateCustomers = (iterations) => {
     console.log(newSet);
 };
 
-const generateOrders = (iterations) => {
-    let newSet = [];
-
-    for (let counter = 0; counter < iterations; counter++) {
-        let newFirst = generateFirstName();
-        let newLast = generateLastName();
-        let newStreet = generateStreetAddress();
-        let newCity = generateCity();
-        let newState = generateState();
-        let newZip = generateZip();
-        let newCountry = generateCountry();
-        let newCountryCode = generateCountryCode();
-        let newEmail = generateEmail();
-
-        console.log(getProducts());
-
-        newSet.push({
-            billing_address: {
-                first_name: newFirst,
-                last_name: newLast,
-                street_1: newStreet,
-                city: newCity,
-                state: newState,
-                zip: newZip,
-                country: newCountry,
-                country_iso2: newCountryCode,
-                email: newEmail,
-            },
-            products: [
-                {
-                    name: "",
-                    quantity: Math.floor(Math.random() * 10 + 1),
-                    prince_inc_tax: 0,
-                    prince_ex_tax: 0,
-                },
-            ],
-        });
-    }
-
-    console.log(newSet);
-};
-
 const generateFirstName = () => {
     let useArray = shuffleArray([...boys_names, ...girls_names]);
     return useArray[Math.floor(Math.random() * useArray.length)];
@@ -158,8 +116,23 @@ const generateCountryCode = () => {
     return "AU";
 };
 
+const getOrders = () => {
+    let config = {
+        method: "get",
+        url: "/bc-api/v2/orders",
+    };
+
+    axios(config)
+        .then((response) => {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
 const ShopInfoGenerator = () => {
-    const [products, setProducts] = useState({});
+    const [loadedProducts, setLoadedProducts] = useState();
 
     const getProducts = () => {
         let config = {
@@ -169,16 +142,73 @@ const ShopInfoGenerator = () => {
 
         axios(config)
             .then((response) => {
-                console.log(response.data);
+                const result = response.data;
+                setLoadedProducts(result.data);
+                generateOrders(40, result.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
     };
 
+    const generateOrders = (iterations, productsObjects) => {
+        let newSet = [];
+
+        for (let counter = 0; counter < iterations; counter++) {
+            let newFirst = generateFirstName();
+            let newLast = generateLastName();
+            let newStreet = generateStreetAddress();
+            let newCity = generateCity();
+            let newState = generateState();
+            let newZip = generateZip();
+            let newCountry = generateCountry();
+            let newCountryCode = generateCountryCode();
+            let newEmail = generateEmail(newFirst, newLast);
+
+            let productsArray = [];
+            let setOfProducts = [...productsObjects];
+            const numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
+
+            for (let x = 0; x < numberOfProducts; x++) {
+                let productAtRandom = Math.floor(
+                    Math.random() * setOfProducts.length
+                );
+
+                let thisProduct = productsObjects[productAtRandom];
+
+                productsArray.push({
+                    name: thisProduct["name"],
+                    quantity: Math.floor(Math.random() * 5 + 1),
+                    prince_inc_tax: parseFloat(
+                        (thisProduct["price"] * 1.1).toFixed(2)
+                    ),
+                    prince_ex_tax: parseFloat(thisProduct["price"].toFixed(2)),
+                });
+
+                setOfProducts.splice(productAtRandom, 1);
+            }
+
+            newSet.push({
+                billing_address: {
+                    first_name: newFirst,
+                    last_name: newLast,
+                    street_1: newStreet,
+                    city: newCity,
+                    state: newState,
+                    zip: newZip,
+                    country: newCountry,
+                    country_iso2: newCountryCode,
+                    email: newEmail,
+                },
+                products: productsArray,
+            });
+        }
+
+        console.log(newSet);
+    };
+
     useEffect(() => {
         // generateCustomers(10);
-        // generateOrders(5);
         getProducts();
     }, []);
 

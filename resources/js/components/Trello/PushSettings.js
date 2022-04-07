@@ -104,6 +104,29 @@ const PushSettings = ({ token }) => {
         }
     };
 
+    // Get Order Numbers
+    const getOrderNumbers = () => {
+        let config = {
+            method: "get",
+            url: "/bc-api/v3/order",
+        };
+
+        axios(config)
+            .then((response) => {
+                const orders = response.data;
+
+                console.log(response.data);
+                // setListsList(
+                //     lists.map((item) => {
+                //         return { value: item["id"], content: item["name"] };
+                //     })
+                // );
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
         getBoards();
     }, []);
@@ -183,8 +206,12 @@ const PushSettings = ({ token }) => {
                                             content: "Beginning of time",
                                         },
                                         {
-                                            value: "from",
+                                            value: "date",
                                             content: "Specific date",
+                                        },
+                                        {
+                                            value: "order",
+                                            content: "Specific Order",
                                         },
                                     ]}
                                     placeholder={"Select an option"}
@@ -193,7 +220,7 @@ const PushSettings = ({ token }) => {
                                     value={dateOption}
                                 />
                             </FormGroup>
-                            {dateOption === "from" ? (
+                            {dateOption === "date" ? (
                                 <FormGroup>
                                     <Datepicker
                                         label="Pick a date"
@@ -203,6 +230,12 @@ const PushSettings = ({ token }) => {
                                         value={date}
                                         locale="en-AU"
                                     />
+                                </FormGroup>
+                            ) : null}
+
+                            {dateOption === "order" ? (
+                                <FormGroup>
+                                    <Select></Select>
                                 </FormGroup>
                             ) : null}
                             <FormGroup>

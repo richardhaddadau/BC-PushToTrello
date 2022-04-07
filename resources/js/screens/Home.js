@@ -29,13 +29,13 @@ const Home = () => {
                     const tokenStatus = responses[0].data;
                     const cookieStatus = responses[1].data;
 
-                    if (tokenStatus === 200) {
+                    if (token && tokenStatus === 200) {
                         clearCookie();
                         setCookie(token);
 
                         setValidated(true);
                         setValidToken(token);
-                    } else if (cookieStatus === 200) {
+                    } else if (cookie && cookieStatus === 200) {
                         setValidated(true);
                         setValidToken(cookie);
                     } else {
