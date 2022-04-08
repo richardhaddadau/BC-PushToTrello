@@ -42,4 +42,3 @@ Route::group(['prefix' => 'auth'], function() {
 
 Route::any('/bc-api/{endpoint}', [MainController::class, 'proxyBigCommerceAPIRequest'])
     ->where('endpoint', 'v2\/.*|v3\/.*');
-

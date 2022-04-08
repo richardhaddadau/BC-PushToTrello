@@ -131,10 +131,92 @@ const getOrders = () => {
         });
 };
 
+const generateOrders = (iterations, productsObjects) => {
+    let newSet = [];
+
+    for (let counter = 0; counter < iterations; counter++) {
+        let newFirst = generateFirstName();
+        let newLast = generateLastName();
+        let newStreet = generateStreetAddress();
+        let newCity = generateCity();
+        let newState = generateState();
+        let newZip = generateZip();
+        let newCountry = generateCountry();
+        let newCountryCode = generateCountryCode();
+        let newEmail = generateEmail(newFirst, newLast);
+
+        let productsArray = [];
+        let setOfProducts = [...productsObjects];
+        const numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
+
+        for (let x = 0; x < numberOfProducts; x++) {
+            let productAtRandom = Math.floor(
+                Math.random() * setOfProducts.length
+            );
+
+            let thisProduct = productsObjects[productAtRandom];
+
+            productsArray.push({
+                name: thisProduct["name"],
+                quantity: Math.floor(Math.random() * 5 + 1),
+                price_inc_tax: parseFloat(
+                    (thisProduct["price"] * 1.1).toFixed(2)
+                ),
+                price_ex_tax: parseFloat(thisProduct["price"].toFixed(2)),
+            });
+
+            setOfProducts.splice(productAtRandom, 1);
+        }
+
+        newSet.push({
+            billing_address: {
+                first_name: newFirst,
+                last_name: newLast,
+                street_1: newStreet,
+                city: newCity,
+                state: newState,
+                zip: newZip,
+                country: newCountry,
+                country_iso2: newCountryCode,
+                email: newEmail,
+            },
+            products: productsArray,
+        });
+    }
+
+    for (let order in newSet) {
+        // console.log(JSON.stringify(newSet[order]));
+        pushToBC(JSON.stringify(newSet[order]), "/bc-api/v2/orders");
+    }
+
+    console.log(newSet);
+    // console.log(JSON.stringify(newSet[0]));
+};
+
+const pushToBC = (data, endpoint) => {
+    let config = {
+        method: "post",
+        url: endpoint,
+        data: data,
+    };
+
+    axios(config)
+        .then((response) => {
+            console.log("Done");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
 const ShopInfoGenerator = () => {
     const [loadedProducts, setLoadedProducts] = useState();
 
-    const getProducts = () => {
+    const pushOrders = (iterations) => {
+        getProducts(iterations);
+    };
+
+    const getProducts = (iterations) => {
         let config = {
             method: "get",
             url: "/bc-api/v3/catalog/products",
@@ -144,72 +226,17 @@ const ShopInfoGenerator = () => {
             .then((response) => {
                 const result = response.data;
                 setLoadedProducts(result.data);
-                generateOrders(40, result.data);
+                generateOrders(iterations, result.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
     };
 
-    const generateOrders = (iterations, productsObjects) => {
-        let newSet = [];
-
-        for (let counter = 0; counter < iterations; counter++) {
-            let newFirst = generateFirstName();
-            let newLast = generateLastName();
-            let newStreet = generateStreetAddress();
-            let newCity = generateCity();
-            let newState = generateState();
-            let newZip = generateZip();
-            let newCountry = generateCountry();
-            let newCountryCode = generateCountryCode();
-            let newEmail = generateEmail(newFirst, newLast);
-
-            let productsArray = [];
-            let setOfProducts = [...productsObjects];
-            const numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
-
-            for (let x = 0; x < numberOfProducts; x++) {
-                let productAtRandom = Math.floor(
-                    Math.random() * setOfProducts.length
-                );
-
-                let thisProduct = productsObjects[productAtRandom];
-
-                productsArray.push({
-                    name: thisProduct["name"],
-                    quantity: Math.floor(Math.random() * 5 + 1),
-                    prince_inc_tax: parseFloat(
-                        (thisProduct["price"] * 1.1).toFixed(2)
-                    ),
-                    prince_ex_tax: parseFloat(thisProduct["price"].toFixed(2)),
-                });
-
-                setOfProducts.splice(productAtRandom, 1);
-            }
-
-            newSet.push({
-                billing_address: {
-                    first_name: newFirst,
-                    last_name: newLast,
-                    street_1: newStreet,
-                    city: newCity,
-                    state: newState,
-                    zip: newZip,
-                    country: newCountry,
-                    country_iso2: newCountryCode,
-                    email: newEmail,
-                },
-                products: productsArray,
-            });
-        }
-
-        console.log(newSet);
-    };
-
     useEffect(() => {
         // generateCustomers(10);
-        getProducts();
+        // getProducts();
+        pushOrders(3);
     }, []);
 
     return <div></div>;

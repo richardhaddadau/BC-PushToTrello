@@ -12621,13 +12621,85 @@ var getOrders = function getOrders() {
   });
 };
 
+var generateOrders = function generateOrders(iterations, productsObjects) {
+  var newSet = [];
+
+  for (var counter = 0; counter < iterations; counter++) {
+    var newFirst = generateFirstName();
+    var newLast = generateLastName();
+    var newStreet = generateStreetAddress();
+    var newCity = generateCity();
+    var newState = generateState();
+    var newZip = generateZip();
+    var newCountry = generateCountry();
+    var newCountryCode = generateCountryCode();
+    var newEmail = generateEmail(newFirst, newLast);
+    var productsArray = [];
+
+    var setOfProducts = _toConsumableArray(productsObjects);
+
+    var numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
+
+    for (var x = 0; x < numberOfProducts; x++) {
+      var productAtRandom = Math.floor(Math.random() * setOfProducts.length);
+      var thisProduct = productsObjects[productAtRandom];
+      productsArray.push({
+        name: thisProduct["name"],
+        quantity: Math.floor(Math.random() * 5 + 1),
+        price_inc_tax: parseFloat((thisProduct["price"] * 1.1).toFixed(2)),
+        price_ex_tax: parseFloat(thisProduct["price"].toFixed(2))
+      });
+      setOfProducts.splice(productAtRandom, 1);
+    }
+
+    newSet.push({
+      billing_address: {
+        first_name: newFirst,
+        last_name: newLast,
+        street_1: newStreet,
+        city: newCity,
+        state: newState,
+        zip: newZip,
+        country: newCountry,
+        country_iso2: newCountryCode,
+        email: newEmail
+      },
+      products: productsArray
+    });
+  }
+
+  for (var order in newSet) {
+    // console.log(JSON.stringify(newSet[order]));
+    pushToBC(JSON.stringify(newSet[order]), "/bc-api/v2/orders");
+  }
+
+  console.log(newSet); // console.log(JSON.stringify(newSet[0]));
+};
+
+var pushToBC = function pushToBC(data, endpoint) {
+  var config = {
+    method: "post",
+    url: endpoint,
+    data: data
+  };
+  axios__WEBPACK_IMPORTED_MODULE_1___default()(config).then(function (response) {
+    console.log("Done");
+  })["catch"](function (error) {
+    console.log(error);
+  });
+};
+
 var ShopInfoGenerator = function ShopInfoGenerator() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
       loadedProducts = _useState2[0],
       setLoadedProducts = _useState2[1];
 
-  var getProducts = function getProducts() {
+  var pushOrders = function pushOrders(iterations) {
+    getProducts(iterations);
+  };
+
+  var getProducts = function getProducts(iterations) {
     var config = {
       method: "get",
       url: "/bc-api/v3/catalog/products"
@@ -12635,65 +12707,16 @@ var ShopInfoGenerator = function ShopInfoGenerator() {
     axios__WEBPACK_IMPORTED_MODULE_1___default()(config).then(function (response) {
       var result = response.data;
       setLoadedProducts(result.data);
-      generateOrders(40, result.data);
+      generateOrders(iterations, result.data);
     })["catch"](function (error) {
       console.log(error);
     });
   };
 
-  var generateOrders = function generateOrders(iterations, productsObjects) {
-    var newSet = [];
-
-    for (var counter = 0; counter < iterations; counter++) {
-      var newFirst = generateFirstName();
-      var newLast = generateLastName();
-      var newStreet = generateStreetAddress();
-      var newCity = generateCity();
-      var newState = generateState();
-      var newZip = generateZip();
-      var newCountry = generateCountry();
-      var newCountryCode = generateCountryCode();
-      var newEmail = generateEmail(newFirst, newLast);
-      var productsArray = [];
-
-      var setOfProducts = _toConsumableArray(productsObjects);
-
-      var numberOfProducts = Math.floor(Math.random() * (6 + 1) + 1);
-
-      for (var x = 0; x < numberOfProducts; x++) {
-        var productAtRandom = Math.floor(Math.random() * setOfProducts.length);
-        var thisProduct = productsObjects[productAtRandom];
-        productsArray.push({
-          name: thisProduct["name"],
-          quantity: Math.floor(Math.random() * 5 + 1),
-          prince_inc_tax: parseFloat((thisProduct["price"] * 1.1).toFixed(2)),
-          prince_ex_tax: parseFloat(thisProduct["price"].toFixed(2))
-        });
-        setOfProducts.splice(productAtRandom, 1);
-      }
-
-      newSet.push({
-        billing_address: {
-          first_name: newFirst,
-          last_name: newLast,
-          street_1: newStreet,
-          city: newCity,
-          state: newState,
-          zip: newZip,
-          country: newCountry,
-          country_iso2: newCountryCode,
-          email: newEmail
-        },
-        products: productsArray
-      });
-    }
-
-    console.log(newSet);
-  };
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // generateCustomers(10);
-    getProducts();
+    // getProducts();
+    pushOrders(3);
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {});
 };
