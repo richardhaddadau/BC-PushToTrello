@@ -12197,9 +12197,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Form.js");
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Form/Group/Group.js");
 /* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Select/Select.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Checkbox/Checkbox.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
-/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Datepicker/Datepicker.js");
+/* harmony import */ var _bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @bigcommerce/big-design */ "./node_modules/@bigcommerce/big-design/dist/es/components/Button/Button.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -12392,12 +12391,6 @@ var PushSettings = function PushSettings(_ref) {
                 required: true,
                 value: listOption
               }) : null : null
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.Checkbox, {
-                label: "Turn on automatic sync",
-                checked: checked,
-                onChange: handleCheckbox
-              })
             })]
           })
         })]
@@ -12436,7 +12429,7 @@ var PushSettings = function PushSettings(_ref) {
                 value: dateOption
               })
             }), dateOption === "date" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Datepicker, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_6__.Datepicker, {
                 label: "Pick a date",
                 min: "01/01/2021",
                 max: getToday(),
@@ -12449,7 +12442,7 @@ var PushSettings = function PushSettings(_ref) {
             }) : null, dateOption === "order" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_5__.Select, {})
             }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_4__.FormGroup, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_8__.Button, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_bigcommerce_big_design__WEBPACK_IMPORTED_MODULE_7__.Button, {
                 children: "Sync Now"
               })
             })]

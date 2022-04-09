@@ -176,13 +176,13 @@ const PushSettings = ({ token }) => {
                                     ) : null
                                 ) : null}
                             </FormGroup>
-                            <FormGroup>
-                                <Checkbox
-                                    label="Turn on automatic sync"
-                                    checked={checked}
-                                    onChange={handleCheckbox}
-                                />
-                            </FormGroup>
+                            {/*<FormGroup>*/}
+                            {/*    <Checkbox*/}
+                            {/*        label="Turn on automatic sync"*/}
+                            {/*        checked={checked}*/}
+                            {/*        onChange={handleCheckbox}*/}
+                            {/*    />*/}
+                            {/*</FormGroup>*/}
                         </Form>
                     </div>
                 </div>
