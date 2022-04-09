@@ -12713,10 +12713,9 @@ var ShopInfoGenerator = function ShopInfoGenerator() {
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // generateCustomers(10);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {// generateCustomers(10);
     // getProducts();
-    pushOrders(3);
+    // pushOrders(10);
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {});
 };

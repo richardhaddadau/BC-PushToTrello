@@ -236,7 +236,7 @@ const ShopInfoGenerator = () => {
     useEffect(() => {
         // generateCustomers(10);
         // getProducts();
-        pushOrders(3);
+        // pushOrders(10);
     }, []);
 
     return <div></div>;

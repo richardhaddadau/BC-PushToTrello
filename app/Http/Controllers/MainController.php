@@ -183,7 +183,7 @@ class MainController extends Controller
             ]
         ];
 
-        if ($request->method() === 'PUT') {
+        if ($request->method() === 'PUT' || $request->method() === 'POST') {
             $requestOptions['body'] = $request->getContent();
         }
 
