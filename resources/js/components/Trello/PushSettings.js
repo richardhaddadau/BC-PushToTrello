@@ -168,7 +168,11 @@ const PushSettings = ({ token }) => {
                                                 processListChange(listOption);
                                             }}
                                             options={listsList}
-                                            placeholder={"Select a list"}
+                                            placeholder={
+                                                boardOption === 0
+                                                    ? "Select a Board First"
+                                                    : "Select a list"
+                                            }
                                             placement={"bottom-start"}
                                             required
                                             value={listOption}
@@ -205,10 +209,10 @@ const PushSettings = ({ token }) => {
                                             value: "beginning",
                                             content: "Beginning of time",
                                         },
-                                        {
-                                            value: "date",
-                                            content: "Specific date",
-                                        },
+                                        // {
+                                        //     value: "date",
+                                        //     content: "Specific date",
+                                        // },
                                         {
                                             value: "order",
                                             content: "Specific Order",
@@ -241,6 +245,10 @@ const PushSettings = ({ token }) => {
                             <FormGroup>
                                 <Button>Sync Now</Button>
                             </FormGroup>
+
+                            <p className="fst-italic fs-6 mt-1">
+                                Automatic Sync coming soon.
+                            </p>
                         </Form>
                     </div>
                 </div>
